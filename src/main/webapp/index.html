@@ -2,19 +2,33 @@
 <html ng-app="kiss">
 <head>
 <title>KISS</title>
-<link rel="stylesheet" type="text/css" href="lib/botstrap-3.3.4/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="lib/bootstrap-3.3.4/css/bootstrap.css" />
+<script src="lib/angular/angular.js"></script>
+<script src="lib/angular/angular-route.js"></script>
+<script src="lib/angular/angular-ui-router.js"></script>
+<script src="app/app.js"></script>
 </head>
 
 <body>
-<div ng-controller="StoreController as store">
-  <h1>Welcome to KISS Application</h1>
-  <h1>{{store.product.name}}</h1>
-  <h1>${{store.product.price}}</h1>
-  <p>{{store.product.description}}</p>
-  <button ng-show="store.product.canPurchase">Add to cart</button>
- </div>
-  <script src="lib/angular/angular.js"></script>
-  <script src="lib/angular/angular-route.js"></script>
-  <script src="app/app.js"></script>
+
+<!-- NAVIGATION -->
+<nav class="navbar navbar-inverse" role="navigation">
+    <div class="navbar-header">
+        <a class="navbar-brand" ui-sref="#">KISS</a>
+    </div>
+    <ul class="nav navbar-nav">
+        <li><a ui-sref="home">Home</a></li>
+        <li><a ui-sref="about">About</a></li>
+    </ul>
+</nav>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+
+    <!-- THIS IS WHERE WE WILL INJECT OUR CONTENT ============================== -->
+    <div ui-view></div>
+
+</div>
+  
 </body>
 </html>
