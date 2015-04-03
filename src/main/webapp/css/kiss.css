@@ -1,1 +1,15 @@
 /*KISS application CSS*/
+
+html, body {
+  height: 100%;
+}
+
+body{
+  background-image: url('../images/background.png');
+  font-size: 12px;
+}
+
+/* Bootstrap */
+/* .dropdown:hover .dropdown-menu {
+    display: block;
+ } */

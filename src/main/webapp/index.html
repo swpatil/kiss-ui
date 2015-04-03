@@ -1,12 +1,25 @@
 <!DOCTYPE html>
-<html ng-app="kiss">
+<html lang="da" ng-app="kissApp">
 <head>
 <title>KISS</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<link rel="stylesheet" type="text/css" href="css/kiss.css" />
+<!-- Bootstrap -->
 <link rel="stylesheet" type="text/css" href="lib/bootstrap-3.3.4/css/bootstrap.css" />
+<script src="lib/jquery/jquery-2.1.3.js"></script>
+<script src="lib/bootstrap-3.3.4/js/bootstrap.js"></script>
+<!-- angular -->
 <script src="lib/angular/angular.js"></script>
 <script src="lib/angular/angular-route.js"></script>
 <script src="lib/angular/angular-ui-router.js"></script>
 <script src="app/app.js"></script>
+<script src="app/config.js"></script>
+<script src="app/controller/kissController.js"></script>
+<script src="app/controller/searchController.js"></script>
 </head>
 
 <body>
@@ -14,11 +27,32 @@
 <!-- NAVIGATION -->
 <nav class="navbar navbar-inverse" role="navigation">
     <div class="navbar-header">
-        <a class="navbar-brand" ui-sref="#">KISS</a>
+        <a class="navbar-brand" ui-sref="#">TDC</a>
     </div>
     <ul class="nav navbar-nav">
         <li><a ui-sref="home">Home</a></li>
-        <li><a ui-sref="about">About</a></li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Search<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a ui-sref="search.customer">Customer</a></li>
+            <li><a ui-sref="search.address">Address</a></li>
+            <li><a href="#">Case</a></li>
+            <li><a href="#">Head End</a></li>
+            <li><a href="#">Party</a></li>
+          </ul>
+        </li>
+        
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">CU MassUpdate</a></li>
+            <li><a href="#">Cable Types</a></li>
+            <li><a href="#">Cancel Case</a></li>
+            <li><a href="#">Delete Case</a></li>
+            <li><a href="#">Document Generator</a></li>
+          </ul>
+        </li>
     </ul>
 </nav>
 
