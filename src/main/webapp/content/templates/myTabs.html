@@ -1,0 +1,7 @@
+<ul class="myTabs">
+    <li ng-repeat="tab in tabs" ng-class="{active: tab.show}" ng-click="setActiveTab(tab.title)">{{tab.title}}</li> 
+</ul> <br/><br/>
+<div ng-repeat="tab in tabs" ng-show="tab.show"> 
+    <div static-include="{{tab.templateUrl}}"></div>
+</div>
+

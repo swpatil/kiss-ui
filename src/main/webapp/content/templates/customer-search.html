@@ -4,19 +4,19 @@
 		<div class="form-group">		 
 	    	<label  class="hidden-xxs col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Customer Number</label>
 	    	<div class=" col-xxs-12 col-lg-8 col-md-8 col-sm-8 col-xs-8">
-	    		<input type="text" class="form-control input-sm" name="cableunitnumber"  id="customernumber" data-provide="typeahead" maxlength="10"  placeholder="Customer Number" tabindex="2">
+	    		<input type="text" class="form-control input-sm"   id="customernumber" ng-model="custNo" data-provide="typeahead" maxlength="10"  placeholder="Customer Number" tabindex="2">
 	    	</div>
 	    	</div>
 	    	<div class="form-group">
 	    	<label class=" hidden-xxs col-md-4 col-sm-4 col-xs-4 col-lg-4 control-label">Postal Code</label>
 	    	<div class="col-xxs-12 col-md-8 col-sm-8 col-xs-8  col-lg-8">
-	    		<input type="text" class="form-control input-sm" name="postalcode" id="postalcode"  data-provide="typeahead" maxlength="10"  placeholder="postalcode" tabindex="3">
+	    		<input type="text" class="form-control input-sm" id="postalcode"  data-provide="typeahead" maxlength="10"  placeholder="postalcode" tabindex="3">
 	    	</div>		
 	    	</div>
 	    	<div class="form-group">
 	    	<label  class=" hidden-xxs col-md-4 col-sm-4 col-xs-4  col-lg-4 control-label">Municipality</label>
 	    	<div class="col-xxs-12 col-md-8 col-sm-8 col-xs-8 col-lg-8 ">
-	    		<input type="text" class="form-control input-sm" name="municipality" id="municipality" maxlength="10"  placeholder="Municapility" tabindex="4">
+	    		<input type="text" class="form-control input-sm"  id="municipality" maxlength="10"  placeholder="Municapility" tabindex="4">
 	    	</div>
 	    	</div>
 	    	<div class="form-group">
@@ -69,8 +69,12 @@
 	  	</div>
 	  	<div class="form-group">
     	<div class="col-sm-10 col-xs-10 col-xxs-10">
-      	<button id="search" type="submit" data-loading-text= "searching" title='search'  class="btn btn-primary" tabindex="9">Submit</button>
-        <input type="button" value='Clear' id="clearinput"  class="btn btn-default" tabindex="10" title="clear"/>
+
+		<a ui-sref="customer({cusNo: custNo})">
+               <button id="search" type="submit" data-loading-text= "searching" title='search'  class="btn btn-primary" tabindex="9">Submit</button>
+        </a>
+      	
+        <input type="button" value='Clear' id="clearinput"  class="btn btn-default" tabindex="10" title="clear" />
 
        </div>
   		</div>

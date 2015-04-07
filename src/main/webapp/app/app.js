@@ -1,4 +1,7 @@
-//(function() {
-var kissApp = angular.module('kissApp', [ 'ui.router' ]);
-	
-//})();
+(function() {
+
+var kissApp = angular.module('kissApp', [ 'ui.router']);
+
+})();
+
+

@@ -1,0 +1,25 @@
+<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle
+	Menu</a>
+
+<div id="wrapper">
+	<!-- Sidebar -->
+	<div id="sidebar-wrapper">
+		<div ui-view="cusTree"></div>
+	</div>
+
+
+	<!-- Page Content -->
+
+	<div id="page-content-wrapper">
+		<div ui-view="tabs"></div>
+	</div>
+
+</div>
+
+<!-- Menu Toggle Script -->
+<script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
