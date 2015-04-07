@@ -1,8 +1,6 @@
 (function() {
 
-	angular
-			.module('kissApp')
-			.config(
+kissApp.config(
 					function($stateProvider, $urlRouterProvider) {
 
 						$urlRouterProvider.otherwise('/home');

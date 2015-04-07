@@ -1,7 +1,3 @@
-(function() {
-
-var kissApp = angular.module('kissApp', [ 'ui.router']);
-
-})();
+var kissApp = angular.module('kissApp', [ 'ui.router','ui.tree']);
 
 

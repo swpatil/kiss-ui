@@ -1,18 +1,18 @@
 (function() {
 
-	angular.module('kissApp').controller('customerSearchController',
+	kissApp.controller('customerSearchController',
 			function($scope, $location) {
 
 				$scope.message = "Hello from Customer Search";
 
 			});
 
-	angular.module('kissApp').controller('addressSearchController',
+	kissApp.controller('addressSearchController',
 			function($scope) {
 				$scope.message = "Hello from Address Search";
 			});
 
-	angular.module('kissApp').controller('tabController',
+	kissApp.controller('tabController',
 			function($scope, $state, $stateParams) {
 
 				$scope.tabs = [ {
@@ -30,12 +30,40 @@
 				console.log($stateParams.cusNo);
 
 			});
-	angular.module('kissApp').controller('treeController',
-			function($scope, $state, $stateParams) {
 
-				$scope.message = "Hello from tree control";
-				console.log($stateParams.cusNo);
+	kissApp.controller('treeController', 
+			function($scope,$http,$state, $stateParams) {
 
-			});
+
+
+			$scope.toggle = function(scope) {
+				//alert(scope);
+			  scope.toggle();
+			};
+
+
+			var getRootNodesScope = function() {
+			  return angular.element(document.getElementById("tree-root")).scope();
+			};
+
+			$scope.collapseAll = function() {
+			  var scope = getRootNodesScope();
+			  scope.collapseAll();
+			};
+
+			$scope.expandAll = function() {
+			  var scope = getRootNodesScope();
+			  scope.expandAll();
+			};
+			var link='http://localhost:8080/rest/cableunit/cu/'+$stateParams.cusNo;
+			$http.get(link).
+				success(function(data, status, headers, config) {
+			 $scope.data = [data];
+			  }).
+				error(function(data, status, headers, config) {
+				// called asynchronously if an error occurs
+				// or server returns response with an error status.
+			  });
+		  });
 
 })();
