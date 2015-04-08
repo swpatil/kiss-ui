@@ -70,10 +70,7 @@
 													templateUrl : 'content/templates/customer-details.html'
 												},
 
-												'cusTree@customer' : {
-													templateUrl : 'content/templates/customer-tree.html',
-													controller : 'treeController'
-												},
+												
 												'tabs@customer' : {
 													templateUrl : 'content/templates/tabs.html',
 													controller : 'casetabController'

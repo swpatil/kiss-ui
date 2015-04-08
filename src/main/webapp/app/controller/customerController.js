@@ -47,13 +47,25 @@
 
 			});
 
-	angular.module('kissApp').controller('treeController',
-			function($scope, $state, $stateParams) {
+	angular.module('kissApp').controller('treeController',function($scope,$http,$state, $stateParams){
 
-				$scope.message = "Hello from tree control";
-				console.log($stateParams.cusNo);
+		  	//test tree model 1
+					var link='http://localhost:8080/rest/cableunit/cu/'+$stateParams.cusNo;
+					$http.get(link).
+						success(function(data, status, headers, config) {
+					 $scope.roleList= [data];
+					  }).
+						error(function(data, status, headers, config) {
+						// called asynchronously if an error occurs
+						// or server returns response with an error status.
+					  });
+		     
 
-			});
+		      
+		      
+
+		  
+		  });
 
 	angular
 			.module('kissApp')
