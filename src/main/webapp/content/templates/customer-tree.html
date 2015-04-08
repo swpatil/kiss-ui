@@ -1,28 +1,15 @@
- <ul class="sidebar-nav">
-		<li class="sidebar-brand">
-			<a href="#">
-				Start Bootstrap
-			</a>
-		</li>
-		<li>
-			<a>Dashboard</a>
-		</li>
-		<li>
-			<a ui-sref="customer">Shortcuts</a>
-		</li>
-		<li>
-			<a ui-sref="customer.case({caseNo: 1234})">Overview</a>
-		</li>
-		<li>
-			<a href="#">Events</a>
-		</li>
-		<li>
-			<a href="#">About</a>
-		</li>
-		<li>
-			<a href="#">Services</a>
-		</li>
-		<li>
-			<a href="#">Contact</a>
-		</li>
- </ul>
+<div>
+  <div ng-controller="treeController">
+
+    <div
+      data-angular-treeview="true"
+      data-tree-model="roleList"
+      data-node-id="id"
+      data-node-label="title"
+      data-node-children="nodes" >
+    </div>
+
+  </div>
+</div>
+
+
