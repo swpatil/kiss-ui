@@ -1,6 +1,8 @@
 (function() {
 
-kissApp.config(
+	angular
+			.module('kissApp')
+			.config(
 					function($stateProvider, $urlRouterProvider) {
 
 						$urlRouterProvider.otherwise('/home');
@@ -53,11 +55,31 @@ kissApp.config(
 												},
 												'tabs@customer' : {
 													templateUrl : 'content/templates/tabs.html',
-													controller : 'tabController'
+													controller : 'cutabController'
 												}
 											}
 										})
 
+								.state(
+										'customer.case',
+										{
+											url : '/case/:caseNo',
+
+											views : {
+												'' : {
+													templateUrl : 'content/templates/customer-details.html'
+												},
+
+												'cusTree@customer' : {
+													templateUrl : 'content/templates/customer-tree.html',
+													controller : 'treeController'
+												},
+												'tabs@customer' : {
+													templateUrl : 'content/templates/tabs.html',
+													controller : 'casetabController'
+												}
+											}
+										});
+
 					});
 })();
-

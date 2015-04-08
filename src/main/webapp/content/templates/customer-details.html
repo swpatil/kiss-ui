@@ -1,12 +1,20 @@
-<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle
-	Menu</a>
 
 <div id="wrapper">
 	<!-- Sidebar -->
-	<div id="sidebar-wrapper">
-		<div ui-view="cusTree"></div>
+	
+	 <div id="form_div">
+			<div id="sidebar-wrapper">			 
+				<div ui-view="cusTree"></div>
+				
+			  </div>
+			  <div class="doorOpen toogleButton" id="openButton" style="margin-top: -19px;">
+					<div class="doorOpenIcon glyphicon glyphicon-backward"></div>
+				</div>
 	</div>
 
+	<div class="doorClose toogleButton"  id="closeButton" style="display: none; margin-top: 1px;">
+		<div class="doorCloseIcon glyphicon glyphicon-forward"></div>
+	</div>
 
 	<!-- Page Content -->
 
@@ -16,10 +24,23 @@
 
 </div>
 
-<!-- Menu Toggle Script -->
-<script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-    </script>
+
+	<script>
+
+	$("#closeButton").hide();
+	
+	$(".toogleButton").click(function() {
+		
+		$("#openButton").toggle();
+	
+	    	$('#form_div').animate({
+		    	 width: 'toggle'
+		    }, 200,function(){
+		    	$("#closeButton").toggle();
+		    });
+			$("#wrapper").toggleClass("toggled");
+         
+	});
+
+	
+</script>

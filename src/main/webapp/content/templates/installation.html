@@ -1,0 +1,41 @@
+<div ng-controller="instController"  data-ng-init="init()">
+
+<table st-table="displayed" st-safe-src="rowCollection" class="table table-striped">
+		<thead>
+		<tr>
+			<th st-sort="id">id</th>
+			<th st-sort="addressid">Addressid</th>
+			<th st-sort="startdate">Start Date</th>
+			<th st-sort="enddate">End Date</th>
+		</tr>
+		<tr>
+			<th><input st-search="id"/></th>
+			<th><input st-search="addressid"/></th>
+			<th><input st-search="startdate"/></th>
+			<th><input st-search="enddate"/></th>
+		</tr>
+		</thead>
+		<tbody ng-show="!isLoading">
+		<tr st-select-row="row" st-select-mode="multiple" ng-repeat="row in rowCollection">
+
+		
+			<td>{{row.id}}</td>
+			<td>{{row.addressid}}</td>
+			<td>{{row.startdate}}</td>
+			<td>{{row.enddate}}</td>
+		</tr>
+		</tbody>
+		<tbody ng-show="isLoading">
+		<tr>
+			<td colspan="4" class="text-center">Loading ... </td>
+		</tr>
+		</tbody>
+		<tfoot>
+		<tr>
+			<td class="text-center" st-pagination="" st-items-by-page="10" colspan="4">
+			</td>
+		</tr>
+		</tfoot>
+	</table>	
+</div>
+

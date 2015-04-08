@@ -1,69 +1,90 @@
 (function() {
 
-	kissApp.controller('customerSearchController',
+	angular.module('kissApp').controller('customerSearchController',
 			function($scope, $location) {
 
 				$scope.message = "Hello from Customer Search";
 
 			});
 
-	kissApp.controller('addressSearchController',
+	angular.module('kissApp').controller('addressSearchController',
 			function($scope) {
 				$scope.message = "Hello from Address Search";
 			});
 
-	kissApp.controller('tabController',
+	angular.module('kissApp').controller('cutabController',
 			function($scope, $state, $stateParams) {
 
 				$scope.tabs = [ {
-					title : 'Home',
+					title : 'Installation',
 					show : true,
+					templateUrl : 'content/templates/installation.html'
+				}, {
+					title : 'Cable Unit Details',
 					templateUrl : 'content/templates/address-search.html'
 				}, {
-					title : 'Profile',
-					templateUrl : 'content/templates/address-search.html'
-				}, {
-					title : 'About',
+					title : 'Products',
 					templateUrl : 'content/templates/address-search.html'
 				} ];
 
+			});
+
+	angular.module('kissApp').controller('casetabController',
+			function($scope, $state, $stateParams) {
+
+				$scope.tabs = [ {
+					title : 'Agreements about Products',
+					show : true,
+					templateUrl : 'content/templates/address-search.html'
+				}, {
+					title : 'CaseWorkFlow',
+					templateUrl : 'content/templates/address-search.html'
+				}, {
+					title : 'Address',
+					templateUrl : 'content/templates/address-search.html'
+				} ];
+
+
+			});
+
+	angular.module('kissApp').controller('treeController',
+			function($scope, $state, $stateParams) {
+
+				$scope.message = "Hello from tree control";
 				console.log($stateParams.cusNo);
 
 			});
 
-	kissApp.controller('treeController', 
-			function($scope,$http,$state, $stateParams) {
+	angular
+			.module('kissApp')
+			.controller(
+					'instController',
+					[
+							'$scope',
+							'$stateParams',
+							'$filter',
+							'CustomerService',
+							function($scope, $stateParams, $filter,
+									CustomerService) {
 
+								$scope.isLoading = true;
+								$scope.rowCollection = [];
+								$scope.init = function() {
 
+									console.log('$stateParams.cusNo'
+											+ $stateParams.cusNo);
+									CustomerService
+											.getInstallations(
+													$stateParams.cusNo)
+											.then(
+													function(result) {
+														$scope.displayed = result;
+														$scope.rowCollection = []
+																.concat($scope.displayed);
+														$scope.isLoading = false;
+													});
+								};
 
-			$scope.toggle = function(scope) {
-				//alert(scope);
-			  scope.toggle();
-			};
-
-
-			var getRootNodesScope = function() {
-			  return angular.element(document.getElementById("tree-root")).scope();
-			};
-
-			$scope.collapseAll = function() {
-			  var scope = getRootNodesScope();
-			  scope.collapseAll();
-			};
-
-			$scope.expandAll = function() {
-			  var scope = getRootNodesScope();
-			  scope.expandAll();
-			};
-			var link='http://localhost:8080/rest/cableunit/cu/'+$stateParams.cusNo;
-			$http.get(link).
-				success(function(data, status, headers, config) {
-			 $scope.data = [data];
-			  }).
-				error(function(data, status, headers, config) {
-				// called asynchronously if an error occurs
-				// or server returns response with an error status.
-			  });
-		  });
+							} ]);
 
 })();
