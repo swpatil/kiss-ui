@@ -81,9 +81,9 @@
 							'$scope',
 							'$stateParams',
 							'$filter',
-							'CustomerService',
+							'CustomerService','$modal',
 							function($scope, $stateParams, $filter,
-									CustomerService) {
+									CustomerService,$modal) {
 								$scope.isLoading = true;
 								$scope.rowCollection = [];
 								$scope.init = function() {
@@ -101,7 +101,34 @@
 														$scope.isLoading = false;
 													});
 								};
+								  $scope.open = function (size) {
 
-							} ]);
+ 
+								var modalOptions = {
+								  templateUrl: 'content/templates/popup-address.html',
+								  controller: 'ModalAddressInstanceCtrl',
+								  size: 'lg'
+								};
+								$modal.open(modalOptions);
+  };
+
+} ]);
+
+
+			angular.module('kissApp').controller('ModalAddressInstanceCtrl',['$scope','$modalInstance', function ($scope,$modalInstance) {
+			$scope.ok = function () {
+				$modalInstance.close('success');
+			  };
+			$scope.cancel = function () {
+				$modalInstance.dismiss('cancel');
+			  };
+			      $scope.rowCollection = [
+        {firstName: 'Laurent', lastName: 'Renard', birthDate: new Date('1987-05-21'), balance: 102, email: 'whatever@gmail.com'},
+        {firstName: 'Blandine', lastName: 'Faivre', birthDate: new Date('1987-04-25'), balance: -2323.22, email: 'oufblandou@gmail.com'},
+        {firstName: 'Francoise', lastName: 'Frere', birthDate: new Date('1955-08-27'), balance: 42343, email: 'raymondef@gmail.com'}
+    ];
+			}]);
+
+
 
 })();
