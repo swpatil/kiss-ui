@@ -46,26 +46,32 @@
 
 
 			});
+		  angular
+			.module('kissApp')
+			.controller(
+					'treeController',
+					[
+							'$scope',
+							'$stateParams',						
+							'CustomerService',
+							function($scope, $stateParams,
+									CustomerService) {
+								$scope.init = function() {
 
-	angular.module('kissApp').controller('treeController',function($scope,$http,$state, $stateParams){
+									console.log('$stateParams.cusNo'
+											+ $stateParams.cusNo);
+									CustomerService
+											.getCustomerTree(
+													$stateParams.cusNo)
+											.then(
+											
+													function(result) {
+														 $scope.roleList= [result];
+														$scope.isLoading = false;
+													});
+								};
 
-		  	//test tree model 1
-					var link='http://localhost:8080/rest/cableunit/cu/'+$stateParams.cusNo;
-					$http.get(link).
-						success(function(data, status, headers, config) {
-					 $scope.roleList= [data];
-					  }).
-						error(function(data, status, headers, config) {
-						// called asynchronously if an error occurs
-						// or server returns response with an error status.
-					  });
-		     
-
-		      
-		      
-
-		  
-		  });
+							} ]);
 
 	angular
 			.module('kissApp')
@@ -78,7 +84,6 @@
 							'CustomerService',
 							function($scope, $stateParams, $filter,
 									CustomerService) {
-
 								$scope.isLoading = true;
 								$scope.rowCollection = [];
 								$scope.init = function() {
