@@ -47,10 +47,10 @@ div[data-tree-model] li .normal {
 
 div[data-tree-model] li i, div[data-tree-model] li span {
   cursor: pointer;
+  color:rgb(223, 220, 216);
 }
 
 div[data-tree-model] li .selected {
-  background-color: #aaddff;
-  font-weight: bold;
+  background-color: #596C79;
   padding: 1px 5px;
 }
