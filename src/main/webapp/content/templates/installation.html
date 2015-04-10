@@ -16,7 +16,7 @@
 		</tr>
 		</thead>
 		<tbody ng-show="!isLoading">
-		<tr st-select-row="row" st-select-mode="multiple" ng-repeat="row in rowCollection">
+		<tr st-select-row="row" st-select-mode="multiple" ng-repeat="row in displayed">
 
 		
 			<td>{{row.id}}</td>
@@ -37,7 +37,7 @@
 		</tr>
 		</tfoot>
 	</table>
-    <button class="btn btn-default" ng-click="open()">Add Installations</button>
+    <button class="btn btn-default" ng-click="open('lg')">Add Installations</button>
 
 </div>
 

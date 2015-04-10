@@ -1,9 +1,9 @@
 <div class="modal-dialog modal-lg" >
         <div class="modal-header">
-            <h3 class="modal-title">I'm a modal!</h3>
+            <h3 class="modal-title">Popup Find Address</h3>
         </div>
         <div class="modal-body">
-	<form role="form" class="well well-sm form-horizontal top-border", id="searchform">
+	<form role="form" class="form-horizontal top-border", id="searchform">
 		
 		<div class="col-lg-6 col-md-6 col-sm-6">		
 		<div class="form-group">		 
@@ -112,40 +112,45 @@
 				</div>
 		    </div>  
 	  	</div>
-	  	<div class="form-group">
 
 		
-	</form>
+	
 	<div>
-	<table st-table="rowCollection" class="table">
-	<thead>
-	<tr>
-		<th></th>
-		<th st-sort="firstName">first name</th>
-		<th st-sort="lastName">last name</th>
-		<th st-sort="birthDate">birth date</th>
-		<th st-sort="balance">balance</th>
-		<th>email</th>
-	</tr>
-	</thead>
-	<tbody>
-	<tr ng-repeat="row in rowCollection">
-		<td cs-select="row"></td>
-		<td>{{row.firstName | uppercase}}</td>
-		<td>{{row.lastName}}</td>
-		<td>{{row.birthDate | date}}</td>
-		<td>{{row.balance | currency}}</td>
-		<td><a ng-href="mailto:{{row.email}}">email</a></td>
-	</tr>
-	</tbody>
-</table>
-</div>
+
+<table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped">
+		<thead>
+		<tr>
+			<th></th>
+			<th st-sort="id">id</th>
+			<th st-sort="addressid">Addressid</th>
+			<th st-sort="startdate">Start Date</th>
+			<th st-sort="enddate">End Date</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr ng-repeat="row in displayedCollection">
+
+			<td cs-select="row"><input type="checkbox"></td>
+			<td>{{row.id}}</td>
+			<td>{{row.addressid}}</td>
+			<td>{{row.startdate}}</td>
+			<td>{{row.enddate}}</td>
+		</tr>
+		</tbody>
+		<tfoot>
+		<tr>
+			<td class="text-center" st-pagination="" st-items-by-page="10" colspan="4">
+			</td>
+		</tr>
+		</tfoot>
+	</table>
+	</div>
 			
-         
+      </form>   
         </div>
         <div class="modal-footer">
-            <button class="btn btn-primary" ng-click="ok()">OK</button>
-            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+            <button class="btn btn-default" ng-click="addSelected()">Add Selected</button>
+            <button class="btn btn-default" ng-click="cancel()">Cancel</button>
         </div>
    
 

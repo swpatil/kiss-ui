@@ -54,3 +54,8 @@ div[data-tree-model] li .selected {
   background-color: #596C79;
   padding: 1px 5px;
 }
+.st-selected{
+//  border-left:4px solid black;
+  background: #686869 !important;
+  color: white !important;
+}

@@ -196,4 +196,10 @@ body {
 	margin-top: 12px;
 	float: left;
 } 
+.st-sort-ascent:before{
+    content: '\25B2';
+}
+
+.st-sort-descent:before{
+    content: '\25BC';
 }

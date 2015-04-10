@@ -95,9 +95,8 @@
 													$stateParams.cusNo)
 											.then(
 													function(result) {
-														$scope.displayed = result;
-														$scope.rowCollection = []
-																.concat($scope.displayed);
+														$scope.rowCollection=result;
+														$scope.displayed = [].concat($scope.rowCollection);
 														$scope.isLoading = false;
 													});
 								};
@@ -107,7 +106,7 @@
 								var modalOptions = {
 								  templateUrl: 'content/templates/popup-address.html',
 								  controller: 'ModalAddressInstanceCtrl',
-								  size: 'lg'
+								  size:size
 								};
 								$modal.open(modalOptions);
   };
@@ -115,19 +114,6 @@
 } ]);
 
 
-			angular.module('kissApp').controller('ModalAddressInstanceCtrl',['$scope','$modalInstance', function ($scope,$modalInstance) {
-			$scope.ok = function () {
-				$modalInstance.close('success');
-			  };
-			$scope.cancel = function () {
-				$modalInstance.dismiss('cancel');
-			  };
-			      $scope.rowCollection = [
-        {firstName: 'Laurent', lastName: 'Renard', birthDate: new Date('1987-05-21'), balance: 102, email: 'whatever@gmail.com'},
-        {firstName: 'Blandine', lastName: 'Faivre', birthDate: new Date('1987-04-25'), balance: -2323.22, email: 'oufblandou@gmail.com'},
-        {firstName: 'Francoise', lastName: 'Frere', birthDate: new Date('1955-08-27'), balance: 42343, email: 'raymondef@gmail.com'}
-    ];
-			}]);
 
 
 
