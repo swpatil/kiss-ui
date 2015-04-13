@@ -1,11 +1,14 @@
 (function() {
 
-	angular.module('kissApp').controller('customerSearchController',
-			function($scope, $location) {
+	angular.module('kissApp').controller('customerSearchController',['$scope','CustomerService',
+			function($scope,CustomerService) {
 
-				$scope.message = "Hello from Customer Search";
-
-			});
+				
+				$scope.custNo = undefined;
+				$scope.getCustomers = function(val){
+					return CustomerService.getCustomers(val);
+				}
+			}]);
 
 	angular.module('kissApp').controller('addressSearchController',
 			function($scope) {

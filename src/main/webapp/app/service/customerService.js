@@ -30,6 +30,20 @@ angular.module('kissApp').service('CustomerService', function ($http, $q) {
 
         return d.promise;
     };
+    
+    this.getCustomers = function(cuNum){
+    	var d = $q.defer();
+
+        $http.get('/kiss-rest/cableunit/cus/' + cuNum)
+            .success(function (response) {
+				d.resolve(response);
+            })
+            .error(function () {
+				d.reject();
+            });
+
+        return d.promise;
+    };
 });
 
 
