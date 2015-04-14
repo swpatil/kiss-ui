@@ -1,51 +1,51 @@
-<div class="modal-dialog modal-lg" >
-        <div class="modal-header">
-            <h3 class="modal-title">Popup Find Address</h3>
+<div ng-controller="modalAddressInstanceCtrl" data-ng-init="init()">
+        <div class="">
+            <h3 class="">Popup Find Address</h3>
         </div>
-        <div class="modal-body">
-	<form role="form" class="form-horizontal top-border", id="searchform">
+
+	<form role="form" class="form-horizontal well well-sm form-horizontal top-border"  id="searchform" name="searchform" ng-submit="processForm()">
 		
-		<div class="col-lg-6 col-md-6 col-sm-6">		
+		<div class="col-lg-6 col-md-6 col-sm-6">	
 		<div class="form-group">		 
 	    	<label  class="hidden-xxs col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Street Name</label>
 	    	<div class=" col-xxs-12 col-lg-8 col-md-8 col-sm-8 col-xs-8">
-	    		<input type="text" class="form-control input-sm"   id="customernumber" ng-model="custNo" data-provide="typeahead" maxlength="10"  placeholder="Customer Number" tabindex="2">
+	    		<input type="text" class="form-control input-sm"  ng-model="streetname"  id="streetname" ng-model="custNo" data-provide="typeahead" maxlength="10"  placeholder="Street Name" tabindex="2">
 	    	</div>
-	    	</div>
-	    	<div class="form-group">
+	    </div>
+	    <div class="form-group">
 	    	<label class=" hidden-xxs col-md-4 col-sm-4 col-xs-4 col-lg-4 control-label">Street Number First</label>
 	    	<div class="col-xxs-12 col-md-8 col-sm-8 col-xs-8  col-lg-8">
-	    		<input type="text" class="form-control input-sm" id="street Number First"  data-provide="typeahead" maxlength="10"  placeholder="Street Number First" tabindex="3">
+	    		<input type="text" class="form-control input-sm" id="streetNumberFirst"  ng-model="address.streetNumberFirst" data-provide="typeahead" maxlength="10"  placeholder="Street Number First" tabindex="3">
 	    	</div>		
-	    	</div>
-	    	<div class="form-group">
+	    </div>
+	    <div class="form-group">
 	    	<label  class=" hidden-xxs col-md-4 col-sm-4 col-xs-4  col-lg-4 control-label">Street Number Last</label>
 	    	<div class="col-xxs-12 col-md-8 col-sm-8 col-xs-8 col-lg-8 ">
-	    		<input type="text" class="form-control input-sm"  id="street Number Last" maxlength="10"  placeholder="Street Number Last" tabindex="4">
+	    		<input type="text" class="form-control input-sm"  id="streetNumberLast" maxlength="10"  placeholder="Street Number Last" tabindex="4">
 	    	</div>
-	    	</div>
-	    	<div class="form-group">
+	    </div>
+	    <div class="form-group">
 	    	<label class="hidden-xxs col-md-4 col-sm-4 col-xs-4  col-lg-4 control-label">Postal Code</label>
 		    <div class=" col-xxs-12 col-md-8 col-sm-8 col-xs-8 col-lg-8">
-		    	<input type="text" class="form-control input-sm" id="caseTemplate"  placeholder="Postal Code" tabindex="1">
+		    	<input type="text" class="form-control input-sm" id="postalCode"  placeholder="Postal Code" tabindex="1">
 		    </div>
-		    </div>
-		    <div class="form-group">
+		</div>
+		 <div class="form-group">
 		    	<label class="hidden-xxs col-md-4 col-sm-4 col-xs-4 col-lg-4 control-label">Locality</label>
 		    	<div class="col-xxs-12 col-md-8 col-sm-8 col-xs-8 col-lg-8 ">
-					<input type="text" class="form-control input-sm" id="nummberOfInstallation"  placeholder="Locality" tabindex="1">
-			</div>
+					<input type="text" class="form-control input-sm" id="locality"  placeholder="Locality" tabindex="1">
 		    </div>	
-					    <div class="form-group">
+		  </div>
+			<div class="form-group">
 		    	<label class="hidden-xxs col-md-4 col-sm-4 col-xs-4 col-lg-4 control-label">Postal Area</label>
 		    	<div class="col-xxs-12 col-md-8 col-sm-8 col-xs-8 col-lg-8 ">
-					<input type="text" class="form-control input-sm" id="nummberOfInstallation"  placeholder="Postal Area" tabindex="1">
+					<input type="text" class="form-control input-sm" id="postalArea"  placeholder="Postal Area" tabindex="1">
 				</div>
 		    </div>
 			<div class="form-group">
 		    	<label class="hidden-xxs col-md-4 col-sm-4 col-xs-4 col-lg-4 control-label">Location</label>
 		    	<div class="col-xxs-12 col-md-8 col-sm-8 col-xs-8 col-lg-8 ">
-					<input type="text" class="form-control input-sm" id="nummberOfInstallation"  placeholder="Location" tabindex="1">
+					<input type="text" class="form-control input-sm" id="location"  placeholder="Location" tabindex="1">
 				</div>
 		    </div>
 	    </div>   
@@ -67,7 +67,7 @@
 		    <div class="form-group">
 		    	<label class="hidden-xxs col-md-4 col-sm-4 col-xs-4 col-lg-4 control-label">Side Door First</label>
 		    	<div class="col-xxs-12 col-md-8 col-sm-8 col-xs-8 col-lg-8 ">
-					<input type="text" class="form-control input-sm" id="side Door First"  placeholder="Side Door First" tabindex="1">
+					<input type="text" class="form-control input-sm" id="sideDoorFirst"  placeholder="Side Door First" tabindex="1">
 				</div>
 		    </div>   	    	
 			<div class="form-group">
@@ -79,14 +79,14 @@
 		    <div class="form-group">
 		    	<label class="hidden-xxs col-md-4 col-sm-4 col-xs-4 col-lg-4 control-label">Stair Case</label>
 		    	<div class="col-xxs-12 col-md-8 col-sm-8 col-xs-8 col-lg-8 ">
-					<input type="text" class="form-control input-sm" id="stair Case"  placeholder="Stair Case" tabindex="1">
+					<input type="text" class="form-control input-sm" id="stairCase"  placeholder="Stair Case" tabindex="1">
 				</div>
 		    </div>  	  		
 	    	
 			<div class="form-group">
 		    	<label class="hidden-xxs col-md-4 col-sm-4 col-xs-4 col-lg-4 control-label">Floor</label>
 		    	<div class="col-xxs-12 col-md-8 col-sm-8 col-xs-8 col-lg-8 ">
-					<input type="text" class="form-control input-sm" id="floor"  placeholder="Floor" tabindex="1">
+					<input type="text" class="form-control input-sm" id="floor" ng-model="floor"  placeholder="Floor" tabindex="1">
 				</div>
 		    </div>  
 			<div class="form-group">
@@ -108,33 +108,86 @@
 					<div class="checkbox">
 						  <label>
 						 	<input type="checkbox" value="">
+						 </label>
 					</div>
 				</div>
 		    </div>  
 	  	</div>
 
-		
-	
-	<div>
+		<div class="form-group">
+    	<div class="col-sm-10 col-xs-10 col-xxs-10">
+			
+		      	<div ng-show="fromInstallations == true">
+		      		<button id="search" type="submit" data-loading-text= "searching" title='search'  class="btn btn-default" tabindex="9">Search</button>
+					<button id="clear" type="clear" data-loading-text= "clear"  ng-click="clear()" class="btn btn-default" tabindex="9">Clear</button>
+			      	<a ui-sref="customer({cusNo: custNo})">
+			               <button id="search"  data-loading-text= "searching" title='search'  class="btn btn-default" tabindex="9">Cancel</button>
+			        </a>
+		        	<button id="addselected"  ng-click="addSelected()" class="btn btn-default" tabindex="9">Add Selected</button>
+		        </div>
+		         <div ng-hide="fromInstallations == true">
+		         	<button id="search" type="submit" data-loading-text= "searching" title='search'  class="btn btn-default" tabindex="9">Search</button>
+					<button id="clear" type="clear" data-loading-text= "clear"  ng-click="clear()" class="btn btn-default" tabindex="9">Clear</button>
+			        <a ui-sref="home">
+			               <button id="search"  data-loading-text= "searching" title='search'  class="btn btn-default" tabindex="9">Cancel</button>
+			        </a>
+		        	<button id="addselected"  ng-click="addSelected()" class="btn btn-default" tabindex="9">Delete</button>
+		        </div>
+       </div>
+  		</div>
+	 </form>  
 
+<div ng-show="showAddress" class="well well-white">
 <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped">
 		<thead>
 		<tr>
-			<th></th>
-			<th st-sort="id">id</th>
-			<th st-sort="addressid">Addressid</th>
-			<th st-sort="startdate">Start Date</th>
-			<th st-sort="enddate">End Date</th>
+			
+			<th st-sort="id"></th>
+			<th st-sort="detail">Detail</th>
+			<th st-sort="streetname">Street Name</th>
+			<th st-sort="houseno">Hou- Nr</th>
+			<th st-sort="strno">Str.</th>
+			<th st-sort="floor">Floor</th>
+			<th st-sort="side">Side</th>
+			<th st-sort="location">Location</th>
+			<th st-sort="locality">Locality</th>
+			<th st-sort="postcode">Post Code</th>
+			<th st-sort="postarea">Post Area</th>
+			<th st-sort="status">Status</th>
+			<th st-sort="tmpadd">Temp-Address</th>
+			<th st-sort="frmcstmr">From Customer Number</th>
+			<th st-sort="tocstmr">To Customer Number</</th>
+			<th st-sort="movdate">Movement Date</th>
+			<th st-sort="sernr">Ser-Nr.</th>
+			<th st-sort="activesub">Active Sub.</th>
+			<th st-sort="addloc">Add Location</th>
 		</tr>
 		</thead>
 		<tbody>
 		<tr ng-repeat="row in displayedCollection">
 
 			<td cs-select="row"><input type="checkbox"></td>
-			<td>{{row.id}}</td>
 			<td>{{row.addressid}}</td>
 			<td>{{row.startdate}}</td>
-			<td>{{row.enddate}}</td>
+			<td>{{row.addressid}}</td>
+			<td>{{row.addressid}}</td>
+			<td>temp</td>
+			<td>temp</td>
+			<td>temp</td>
+			<td>temp</td>
+			<td>temp</td>
+			<td>temp</td>
+			<td>temp</td>
+			<td>temp</td>
+			<td>temp</td>
+			<td>temp</td>
+			<td>temp</td>
+			<td>temp</td>
+			<td>temp</td>
+			<td>temp</td>
+			
+
+			
 		</tr>
 		</tbody>
 		<tfoot>
@@ -144,16 +197,12 @@
 		</tr>
 		</tfoot>
 	</table>
-	</div>
-			
-      </form>   
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-default" ng-click="addSelected()">Add Selected</button>
-            <button class="btn btn-default" ng-click="cancel()">Cancel</button>
-        </div>
+</div>
+	</div>		
+      
+
+
    
 
 
 
-</div>

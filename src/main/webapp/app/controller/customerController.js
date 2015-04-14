@@ -90,6 +90,7 @@
 								$scope.isLoading = true;
 								$scope.rowCollection = [];
 								$scope.init = function() {
+									$scope.custNo= $stateParams.cusNo;
 
 									console.log('$stateParams.cusNo'
 											+ $stateParams.cusNo);
@@ -103,16 +104,7 @@
 														$scope.isLoading = false;
 													});
 								};
-								  $scope.open = function (size) {
-
- 
-								var modalOptions = {
-								  templateUrl: 'content/templates/popup-address.html',
-								  controller: 'ModalAddressInstanceCtrl',
-								  size:size
-								};
-								$modal.open(modalOptions);
-  };
+								 
 
 } ]);
 

@@ -203,3 +203,33 @@ body {
 .st-sort-descent:before{
     content: '\25BC';
 }
+.handle {
+  background-color: black;
+  /* left: -40px; */
+  padding: 10px;
+  position: absolute;
+  padding-right:27px;
+  /* top: 400px; */
+  width: 20px;
+  cursor: pointer;
+  /* margin-top: -20px; */
+}
+
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(5,50,50,40.3); 
+    border-radius: 10px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(20,10,30,0.5); 
+}
+.well-white{
+	overflow:auto;
+	background:#FFFFFF !important;
+}

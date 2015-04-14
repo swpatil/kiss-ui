@@ -35,8 +35,8 @@
 										'search.address',
 										{
 											url : '/address',
-											templateUrl : 'content/templates/address-search.html',
-											controller : 'addressSearchController'
+											templateUrl : 'content/templates/popup-address.html',
+											controller : 'modalAddressInstanceCtrl'
 										})
 
 								.state(
@@ -76,6 +76,13 @@
 													controller : 'casetabController'
 												}
 											}
+										})
+								.state(
+										'address',
+										{
+											url : '/address/:cusNo',
+											templateUrl : 'content/templates/popup-address.html',
+											controller : 'modalAddressInstanceCtrl'
 										});
 
 					});
