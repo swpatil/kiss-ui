@@ -48,16 +48,16 @@ angular.module('kissApp').directive('csSelect', function () {
 
             scope.$watch('row.isSelected', function (newValue, oldValue) {
                 if (newValue === true) {
-                    element.parent().addClass('st-selected');
-                    scope.$parent.addressId.push(scope.row.addressid);
-                    console.log('after sekection'+scope.$parent.addressId);
+                    //element.parent().addClass('st-selected');
+                   // scope.$parent.addressId.push(scope.row.addressid);
+                    //console.log('after sekection'+scope.$parent.addressId);
                 } else {
-                    element.parent().removeClass('st-selected');
-                    var index = scope.$parent.addressId.indexOf(scope.row.addressid);
-                    if (index > -1) {
-                    	scope.$parent.addressId.splice(index, scope.row.addressid);
-                    }
-                    console.log('after removal'+scope.$parent.addressId);
+                   // element.parent().removeClass('st-selected');
+                   // var index = scope.$parent.addressId.indexOf(scope.row.addressid);
+                    //if (index > -1) {
+                   // 	scope.$parent.addressId.splice(index, scope.row.addressid);
+                  //  }
+                   // console.log('after removal'+scope.$parent.addressId);
                 }
             });
         }

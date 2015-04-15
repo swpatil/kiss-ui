@@ -33,20 +33,22 @@
 							return d.promise;
 						};
 
-						this.searchAddress = function(postData) {
+						this.searchAddress = function(postData,page) {
 							var d = $q.defer();
 
-							$http
-									.post(
-											"/kiss-rest/ams/addresses/search",
-											postData).success(
-											function(response) {
-												d.resolve(response);
-											}).error(function() {
-										d.reject();
-									});
-
-							return d.promise;
+					        $http.post('/kiss-rest/ams/addresses/search/?pageNo='+page, postData).
+					        success(function(data, status, headers, config) {
+					          // this callback will be called asynchronously
+					          // when the response is available
+					        	d.resolve(data);
+					        	console.log(data);
+					        }).
+					        error(function(data, status, headers, config) {
+					          // called asynchronously if an error occurs
+					          // or server returns response with an error status.
+					        	d.reject();
+					        });
+					        return d.promise;
 						};
 					});
 

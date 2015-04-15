@@ -4,10 +4,12 @@
 	angular.module('kissApp').controller('modalAddressInstanceCtrl',['$scope','AddressService','$stateParams','$state','CustomerService', function ($scope,AddressService,$stateParams,$state,CustomerService) {
 		 $scope.rowCollection = [];
 		 $scope.addressId=[];
-		// address.streetName='';
-			$scope.init = function() {
-				$scope.showAddress=false;
-				$scope.custNo=$stateParams.cusNo ;
+		 $scope.showAddress=false;
+		 $scope.page=1;
+		 $scope.pageLoded;
+		
+
+		 
 				if($stateParams.cusNo === null || angular.isUndefined($stateParams.cusNo)){
 					//From Quick Search Page
 					$scope.fromInstallations=false;
@@ -17,32 +19,64 @@
 					$scope.fromInstallations=true;
 				}
 					
-			};
 			$scope.processForm = function() {
-				//get all the form data;
 				
-				
-				console.log($scope.streetName);
-				console.log($scope.floor);
+				$scope.isLoading = true;
 
-				var data = { streetname: $scope.streetname, floor: $scope.floor };
-				AddressService
-						.searchAddress(data)
-						.then(
-								function(result) {
-									$scope.showAddress=true;	
-								});
+				var data = { floor: $scope.floor,door: $scope.door};
+//				if(tableState.search.predicateObject!= undefined){
+//					
+//					$scope.displayed = tableState.search.predicateObject.$==undefined ? $filter('filter')($scope.displayed, tableState.search.predicateObject) : $scope.displayed;
+//				} 
 				
+
+			  
+				//if(tableState.search.predicateObject == undefined){
+					//var pagination = tableState.pagination;
+
+				    //var start = pagination.start || 0;
+				  // var number = pagination.number || 10;
+
+				   AddressService.searchAddress(data,$scope.page).then(function (result) {
+					   	$scope.rowCollection=result.addresses;
+					   	$scope.itemsByPage=result.totalPages
+				    	$scope.displayedCollection = [].concat($scope.rowCollection);
+				    // tableState.pagination.numberOfPages = 20;
+				    	$scope.showAddress=true;
+				    	$scope.isLoading = false;
+			
+				    });
+				//}
 	
+				
 				};
 		
-		$scope.addSelected = function () {
+		$scope.selectPage= function (page) {
+			alert(page);
 			
 
 			
 		};
 		$scope.clear = function () {
 			$scope.searchform.$setPristine();
+			
+		};
+		$scope.getPaginatedData = function (tableState) {
+			if(tableState.sort.predicate != null  || tableState.sort.predicate !=undefined){
+				console.log("predicate"+tableState.sort.predicate);
+			}
+			else{
+			//$scope.isLoading = true;
+			 tableState.pagination.numberOfPages =$scope.itemsByPage;
+			 var page=tableState.pagination.start;
+			if(page != 0 ||  $scope.pageLoded != undefined){
+				$scope.pageLoded=true;
+				 $scope.page=page/10+1;	
+				 $scope.processForm();
+				 console.log('page number'+page); 
+			 }
+			//$scope.isLoading = true;
+			}
 			
 		};
 //		AddressService

@@ -6,6 +6,7 @@ html,body {
 body {
 	//background-image: url('../images/background.png');
 	//font-size: 12px;
+	padding-top: 60px;
 }
 
 /*!
@@ -32,7 +33,7 @@ body {
 	position: fixed;
 	left: 250px;
 	width: 0;
-	height: 100%;
+	height: 90%;
 	margin-left: -250px;
 	overflow-y: auto;
 	background: #000;
@@ -40,6 +41,9 @@ body {
 	-moz-transition: all 0.5s ease;
 	-o-transition: all 0.5s ease;
 	transition: all 0.5s ease;
+	box-shadow: 0 0 3px 2px #000000;
+	padding:5px;
+	
 }
 
 #wrapper.toggled #sidebar-wrapper {
@@ -50,6 +54,8 @@ body {
 	width: 100%;
 	position: absolute;
 	padding: 15px;
+	padding-top:0px !important;
+	padding-left:40px;
 }
 
 #wrapper.toggled #page-content-wrapper {
@@ -118,6 +124,8 @@ body {
 	}
 	#page-content-wrapper {
 		padding: 20px;
+		padding-top:0px;
+		padding-left:40px;
 		position: relative;
 	}
 	#wrapper.toggled #page-content-wrapper {
@@ -133,6 +141,7 @@ body {
 		padding-left: 0;
 	}
 	.myTabs li {
+		border:black solid 1px;
 		border-top-left-radius: 5px;
 		border-top-right-radius: 5px;
 		padding: 15px 8px 15px 50px;
@@ -152,11 +161,12 @@ body {
 	.myTabs li.active {
 		display: block;
 		padding: 10px;
-		background-color: white;
+		background-color: black;
 		border-bottom: 0px solid lightgrey;
-		border-top: 1px solid lightgrey;
+		/* border-top: 1px solid lightgrey;
 		border-left: 1px solid lightgrey;
-		border-right: 1px solid lightgrey;
+		border-right: 1px solid lightgrey; */
+		color:white;
 	}
 	.dsTabs li.active:hover {
 		background-color: white;
@@ -204,15 +214,17 @@ body {
     content: '\25BC';
 }
 .handle {
+  position:fixed !important;
   background-color: black;
-  /* left: -40px; */
   padding: 10px;
   position: absolute;
   padding-right:27px;
-  /* top: 400px; */
   width: 20px;
   cursor: pointer;
-  /* margin-top: -20px; */
+  border-top-right-radius:2em;
+  border-bottom-right-radius:2em;
+    -webkit-box-shadow: inset 0 0 6px rgba(20,10,30,0.5);
+    box-shadow: inset 0 0 6px rgba(20,10,30,0.5);
 }
 
 
@@ -221,15 +233,79 @@ body {
 }
  
 ::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(5,50,50,40.3); 
-    border-radius: 10px;
-}
- 
+	border-radius:10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(255, 255, 255, 1);    
+}  
 ::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 6px rgba(20,10,30,0.5); 
+    background: whitesmoke;
+    -webkit-box-shadow: inset 0 0 4px 1px rgba(0, 0, 0, 0.5);
 }
 .well-white{
 	overflow:auto;
 	background:#FFFFFF !important;
 }
+.blackBorder{
+	border-top: black solid 3px !important;
+}
+
+.currently-loading {
+opacity:0.45;
+-moz-opacity:0.45;
+filter:alpha(opacity=45);
+width: 100%;
+height:100%;
+background-attachment: fixed;
+background-repeat: no-repeat;
+background-position: center center;
+background:rgb(173, 199, 239);
+z-index:5000;
+}
+ .centeredImage
+    {
+    text-align:center;
+    margin-top:0px;
+    margin-bottom:0px;
+    padding:0px;
+    }
+.loading-indicator {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 100%;
+    text-align: center;
+    padding: 0.7em; }
+
+.loading-indicator:before {
+    display: inline-block;
+    margin: 0 0.4em;
+    min-width: 1em;
+    min-height: 1em;
+    border-top: 4px solid #646464;
+    border-right: 4px solid #e6e6e6;
+    border-left: 4px solid #e6e6e6;
+    border-bottom: 4px solid #646464;
+    content: "";
+    -webkit-animation: halfspin 1s ease infinite;
+    -moz-animation: halfspin 1s ease infinite;
+    -o-animation: halfspin 1s ease infinite;
+    animation: halfspin 1s ease infinite;
+    border-radius: 100%; }
+
+@-webkit-keyframes halfspin {
+    to {
+        -webkit-transform: rotate(180deg);
+        -moz-transform: rotate(180deg);
+        transform: rotate(180deg); } }
+
+@-moz-keyframes halfspin {
+    to {
+        -webkit-transform: rotate(180deg);
+        -moz-transform: rotate(180deg);
+        transform: rotate(180deg); } }
+
+@keyframes halfspin {
+    to {
+        -webkit-transform: rotate(180deg);
+        -moz-transform: rotate(180deg);
+        transform: rotate(180deg); } }
