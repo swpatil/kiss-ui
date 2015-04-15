@@ -119,7 +119,7 @@
 			
 		      	<div ng-show="fromInstallations == true">
 		      		<button id="search" type="submit" data-loading-text= "searching" title='search'  class="btn btn-default" tabindex="9">Search</button>
-					<button id="clear" type="clear" data-loading-text= "clear"  ng-click="clear()" class="btn btn-default" tabindex="9">Clear</button>
+<!-- 					<button id="clear" type="clear" data-loading-text= "clear"  ng-click="clear()" class="btn btn-default" tabindex="9">Clear</button> -->
 			      	<a ui-sref="customer({cusNo: custNo})">
 			               <button  class="btn btn-default" tabindex="9">Cancel</button>
 			        </a>
@@ -127,16 +127,15 @@
 		        </div>
 		         <div ng-hide="fromInstallations == true">
 		         	<button id="search" type="submit" data-loading-text= "searching" title='search'  class="btn btn-default" tabindex="9">Search</button>
-					<button id="clear" type="clear" data-loading-text= "clear"  ng-click="clear()" class="btn btn-default" tabindex="9">Clear</button>
+<!-- 					<button id="clear" type="clear" data-loading-text= "clear"  ng-click="clear()" class="btn btn-default" tabindex="9">Clear</button> -->
 			        <a ui-sref="home">
 			               <button  class="btn btn-default" tabindex="9">Cancel</button>
 			        </a>
-		        	<button id="addselected"  ng-click="addSelected()" class="btn btn-default" tabindex="9">Delete</button>
+<!-- 		        	<button id="addselected"  ng-click="addSelected()" class="btn btn-default" tabindex="9">Delete</button> -->
 		        </div>
        </div>
   		</div>
 	 </form>  
-
 <div ng-if="showAddress == true" class="well well-white table-responsive">
 <table st-table="displayedCollection"  st-pipe="getPaginatedData" st-safe-src="rowCollection" class="table table-striped ">
 		<thead>

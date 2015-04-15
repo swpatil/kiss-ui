@@ -1,12 +1,15 @@
 (function() {
 	
 
-	angular.module('kissApp').controller('modalAddressInstanceCtrl',['$scope','AddressService','$stateParams','$state','CustomerService', function ($scope,AddressService,$stateParams,$state,CustomerService) {
+	angular.module('kissApp').controller('modalAddressInstanceCtrl',['$scope','AddressService','$stateParams','$state','CustomerService','$filter', function ($scope,AddressService,$stateParams,$state,CustomerService,$filter) {
 		 $scope.rowCollection = [];
 		 $scope.addressId=[];
 		 $scope.showAddress=false;
 		 $scope.page=1;
 		 $scope.pageLoded;
+		 $scope.isLoading = false;
+		 $scope.currentPage = 0;
+		 
 		
 
 		 
@@ -17,8 +20,7 @@
 				else{
 					//From Installations Page
 					$scope.fromInstallations=true;
-				}
-					
+				}		
 			$scope.processForm = function() {
 				
 				$scope.isLoading = true;
@@ -62,32 +64,38 @@
 			
 		};
 		$scope.getPaginatedData = function (tableState) {
+			
 			if(tableState.sort.predicate != null  || tableState.sort.predicate !=undefined){
+				if(tableState.pagination.start == 0)
+				tableState.pagination.start= $scope.currentPage;
 				console.log("predicate"+tableState.sort.predicate);
+				if (tableState.sort.predicate) {
+					$scope.displayedCollection = $filter('orderBy')($scope.rowCollection, tableState.sort.predicate, tableState.sort.reverse);
+				}
+
 			}
-			else{
-			//$scope.isLoading = true;
-			 tableState.pagination.numberOfPages =$scope.itemsByPage;
-			 var page=tableState.pagination.start;
-			if(page != 0 ||  $scope.pageLoded != undefined){
-				$scope.pageLoded=true;
-				 $scope.page=page/10+1;	
-				 $scope.processForm();
-				 console.log('page number'+page); 
-			 }
-			//$scope.isLoading = true;
+			//TODO Need to check sorting on default
+			//else{
+				//$scope.displayedCollection = [].concat($scope.rowCollection);
+				//if(tableState.pagination.start == 0)
+				//tableState.pagination.start= $scope.currentPage;
+		//	}
+			
+			tableState.pagination.numberOfPages =$scope.itemsByPage;
+			console.log(tableState.pagination.start);
+			if($scope.currentPage != tableState.pagination.start) {
+					 $scope.currentPage= tableState.pagination.start;
+					 $scope.page=tableState.pagination.start/10+1;	
+					 $scope.processForm();
+					 console.log('page number'+tableState.pagination.start); 
+			
 			}
 			
+			
+
+			  
 		};
-//		AddressService
-//		.getInstallationsOnAddress(
-//				$stateParams.cusNo)
-//		.then(
-//				function(result) {
-//					$scope.rowCollection=result;
-//					 $scope.displayedCollection = [].concat($scope.rowCollection);
-//					$scope.isLoading = false;
-//				});
+
 	}]);
 
 				

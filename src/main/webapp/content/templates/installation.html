@@ -6,20 +6,43 @@
 				<th colspan="4"><input st-search="" class="pull-right form-control input-sm " placeholder="Search.." type="text" style="width: 20%;"/></th>
 			</tr>
 		<tr>
-			<th st-sort="id">id</th>
-			<th st-sort="addressid">Addressid</th>
-			<th st-sort="startdate">Start Date</th>
-			<th st-sort="enddate">End Date</th>
+			<th st-sort="streetname">Street Name</th>
+			<th st-sort="houseno">House Number</th>
+			<th st-sort="floor">Floor</th>
+			<th st-sort="side">Side</th>
+			<th st-sort="postalcode">Postal Code</th>
+			<th st-sort="postalarea">Post- Area</th>
+ 	
+			<th st-sort="movingdate">Movement Date</th>
+			
+
 		</tr>
 		</thead>
 		<tbody ng-show="!isLoading">
 		<tr st-select-row="row" st-select-mode="multiple" ng-repeat="row in displayed">
 
 		
-			<td>{{row.id}}</td>
-			<td>{{row.addressid}}</td>
-			<td>{{row.startdate}}</td>
-			<td>{{row.enddate}}</td>
+			<td>{{row.address.streets.streetname}}</td>
+			<td>{{row.address.houseno}}</td>
+			<td>{{row.address.floor}}</td>
+			<td>{{row.address.door}}</td>
+			<td>{{row.address.postalcode}}</td>
+			<td>{{row.address.streets.municipalities.municipalityname}}</td>
+			<td>{{row.movingdate | date}}</td>
+			
+			
+<!-- 			<td>{{row.address.streets.streetcode}}</td> -->
+<!-- 			<td>{{row.address.streets.municipalities}}</td> -->
+<!-- 			<td>{{row.address.streets.municipalities.municipalitycode}}</td> -->
+<!-- 			<td>{{row.address.streets.municipalities.municipalityname}}</td> -->
+<!-- 			<td>{{row.address.streets.municipalities.regions.regionid}}</td> -->
+<!-- 			<td>{{row.address.streets.municipalities.regions.}}</td> -->
+<!-- 			<td>{{row.address.streets.municipalities.regions.}}</td> -->
+<!-- 			<td>{{row.address.streets.municipalities.regions.}}</td> -->
+<!-- 			<td>{{row.address.streets.}}</td> -->
+<!-- 			<td>{{row.address.streets.}}</td> -->
+<!-- 			<td>{{row.address.streets.}}</td> -->
+
 		</tr>
 		</tbody>
 		<tbody ng-show="isLoading">
