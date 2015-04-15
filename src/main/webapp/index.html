@@ -35,9 +35,13 @@
 </head>
 
 <body>
-<!-- <div id="overlay" class="currently-loading centeredImage" style="position:absolute"><img src="images/loading.gif" alt="Be patient..." align="middle" style="margin-top:10em !important;"/></div> -->
+<div ng-controller="progressIndicator">
+<div ng-show="isDataLoaded">
+<div id="overlay" class="currently-loading centeredImage" style="position:absolute"><img src="images/loading.gif" alt="Be patient..." align="middle" style="margin-top:10em !important;"/></div>
+</div>
+</div>
 <!-- NAVIGATION -->
-<nav class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-inverse navbar-fixed-top" style="background-color:#2B5797;" role="navigation">
     <div class="navbar-header">
         <a class="navbar-brand" ui-sref="#">TDC</a>
     </div>
