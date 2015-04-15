@@ -10,6 +10,11 @@
 		 $scope.isLoading = false;
 		 $scope.currentPage = 0;
 		 
+		 $scope.streetname = undefined;
+		 $scope.getStreets = function(val){
+			 return CustomerService.getStreets(val);
+		 };
+		 
 		
 
 		 
