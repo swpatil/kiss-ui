@@ -1,10 +1,11 @@
-<div ng-controller="instController"  data-ng-init="init()" class="panel panel-default">
+<div ng-controller="instController" class="panel panel-default">
 
-<table st-table="displayed" st-safe-src="rowCollection" st-pipe="callServer" class="table table-striped">
+
+<div ng-show="!isLoading" class=""> 
+	  <input type="text" ng-model="valueForSearch" class="pull-right col-md-2 input-sm form-control" placeholder="Global Search......."  ng-change="searchData()"  style="width: 20%;"/>
+	  </div>
+<table st-table="displayed" st-safe-src="rowCollection" st-pipe="getIndtallations" class="table table-striped">
 		<thead>
-			<tr>
-				<th colspan="4"><input st-search="" class="pull-right form-control input-sm " placeholder="Search.." type="text" style="width: 20%;"/></th>
-			</tr>
 		<tr>
 			<th st-sort="streetname">Street Name</th>
 			<th st-sort="houseno">House Number</th>
@@ -50,9 +51,9 @@
 			<td colspan="4" class="text-center">Loading ... </td>
 		</tr>
 		</tbody>
-		<tfoot>
+		<tfoot ng-show="!isLoading">
 		<tr>
-			<td class="text-center" st-pagination="" st-items-by-page="10" colspan="4">
+			<td class="text-center" st-pagination="" colspan="4">
 			</td>
 		</tr>
 		</tfoot>

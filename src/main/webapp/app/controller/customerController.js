@@ -89,21 +89,54 @@
 									CustomerService,$modal) {
 								$scope.isLoading = true;
 								$scope.rowCollection = [];
-								$scope.init = function() {
-									$scope.custNo= $stateParams.cusNo;
+								$scope.custNo= $stateParams.cusNo;
+								$scope.page=1;
+								$scope.currentPage = 0;
+								$scope.init=true;
+							
+								
+								$scope.getIndtallations = function(tableState) {
+								
+									//$scope.page=tableState.pagination.start/10+1;
 
-									console.log('$stateParams.cusNo'
-											+ $stateParams.cusNo);
+								if(tableState.sort.predicate != null  || tableState.sort.predicate !=undefined){
+										 if(tableState.pagination.start == 0)
+											 tableState.pagination.start= $scope.currentPage;
+										 console.log("predicate"+tableState.sort.predicate);
+										 if (tableState.sort.predicate) {
+											 $scope.displayed = $filter('orderBy')($scope.rowCollection.installations, tableState.sort.predicate, tableState.sort.reverse);
+										 }
+
+									 }
+								// tableState.pagination.numberOfPages =$scope.itemsByPage;
+								// console.log(tableState.pagination.start);
+							
+									$scope.currentPage= tableState.pagination.start;
+									$scope.page=tableState.pagination.start/10+1;	
+
+									//get the data
+									if($scope.init==true){
 									CustomerService
-											.getInstallations(
-													$stateParams.cusNo)
+									.getInstallations(
+											$stateParams.cusNo,$scope.page)
 											.then(
 													function(result) {
 														$scope.rowCollection=result;
-														$scope.displayed = [].concat($scope.rowCollection);
+														$scope.itemsByPage=$scope.rowCollection.totalPages;
+														$scope.displayed = [].concat($scope.rowCollection.installations);
 														$scope.isLoading = false;
+														$scope.init=false;
 													});
 								};
+								};
+								$scope.searchData=function(){
+									var filtered = $scope.valueForSearch ? $filter('filter')($scope.rowCollection.installations, $scope.valueForSearch) : $scope.rowCollection.installations;
+									 $scope.displayed = [].concat(filtered);
+							}
+									
+						
+
+						
 								 
 
 } ]);

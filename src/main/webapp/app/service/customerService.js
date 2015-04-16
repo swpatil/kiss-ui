@@ -2,13 +2,14 @@
 
 angular.module('kissApp').service('CustomerService', function ($http, $q) {
 
-    this.getInstallations = function (cusNo) {
+    this.getInstallations = function (cusNo,page) {
         var d = $q.defer();
 		console.log('cusNo' + cusNo);
 
-        $http.get('/kiss-rest/installations/' + cusNo)
+        $http.get('/kiss-rest/installations/'+cusNo+'/?pageNo='+page)
             .success(function (response) {
 				d.resolve(response);
+				console.log("success"+response);
             })
             .error(function () {
                 d.reject();

@@ -1,8 +1,4 @@
 <div ng-controller="modalAddressInstanceCtrl" >
-        <div class="">
-            <h3 class="">Popup Find Address</h3>
-        </div>
-
 	<form role="form" class="form-horizontal well well-sm form-horizontal top-border container"  id="searchform" name="searchform" ng-submit="processForm()">
 		
 		<div class="col-lg-6 col-md-6 col-sm-6">	
@@ -136,8 +132,11 @@
 		        </div>
        </div>
   		</div>
-	 </form>  
-<div ng-if="showAddress == true" class="well well-white table-responsive container">
+	 </form> 
+<div ng-show="showAddress == true" class="well well-white table-responsive container"> 
+	  <input type="text" ng-model="valueForSearch" class="pull-right col-md-2 input-sm form-control" placeholder="Global Search......."  ng-change="searchData()"  style="width: 20%;"/>
+
+<div ng-if="showAddress == true">
 <table st-table="displayedCollection"  st-pipe="getPaginatedData" st-safe-src="rowCollection" class="table table-striped ">
 		<thead>
 		<tr>
@@ -173,7 +172,7 @@
 			<td>{{row.houseno}}</td>
 			<td>{{row.placename}}</td>
 			<td>{{row.postalcode}}</td>
-			<td>{{row.createddate}}</td>
+			<td>{{row.createddate | date}}</td>
 			<td>{{row.streets.source}}</td>
 			<td>{{row.streets.streetcode}}</td>
 			<td>{{row.streets.streetname}}</td>
@@ -190,7 +189,7 @@
 		</tr>
 		</tfoot>
 	</table>
-</div>
+</div></div>
 	</div>		
       
 
