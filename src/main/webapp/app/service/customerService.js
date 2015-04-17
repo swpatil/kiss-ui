@@ -1,15 +1,16 @@
 (function() {
 
-angular.module('kissApp').service('CustomerService', function ($http, $q) {
+angular.module('kissApp').service('CustomerService', function ($http, $q,globalData) {
 
     this.getInstallations = function (cusNo,page) {
         var d = $q.defer();
 		console.log('cusNo' + cusNo);
-
+		globalData.dataLoaded = true;
         $http.get('/kiss-rest/installations/'+cusNo+'/?pageNo='+page)
             .success(function (response) {
 				d.resolve(response);
 				console.log("success"+response);
+				globalData.dataLoaded = false;
             })
             .error(function () {
                 d.reject();

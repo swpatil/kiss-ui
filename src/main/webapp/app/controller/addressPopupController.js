@@ -12,6 +12,7 @@
 		 $scope.valueForSearch='';
 		 $scope.custNo=$stateParams.cusNo;
 		 $scope.streetname = undefined;
+		 $scope.areFieldEmpty = false;
 		 $scope.getStreets = function(val){
 			 return CustomerService.getStreets(val);
 		 };
@@ -35,7 +36,13 @@
 
 			 $scope.isLoading = true;
 
-			 var data = { floor: $scope.floor,door: $scope.door,streetname:$scope.streetname};
+
+			 var data = { floor: $scope.floor,door: $scope.door};
+			 $scope.areFieldEmpty = ($scope.floor == "" || $scope.floor == undefined) && ($scope.door== undefined || $scope.door == "") && ($scope.streetname == "" ||  $scope.streetname == undefined);
+				if($scope.areFieldEmpty){
+					return;
+				}
+				
 
 			 AddressService.searchAddress(data,$scope.page).then(function (result) {
 				 $scope.rowCollection=result.addresses;

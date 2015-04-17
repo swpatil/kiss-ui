@@ -110,13 +110,13 @@ body {
 
 @media ( min-width :768px) {
 	#wrapper {
-		padding-left: 250px;
+		padding-left: 22.8em;
 	}
 	#wrapper.toggled {
 		padding-left: 0;
 	}
 	#sidebar-wrapper {
-		width: 250px;
+		width: 320px;
 	}
 	#wrapper.toggled #sidebar-wrapper {
 		width: 0;
@@ -124,8 +124,9 @@ body {
 	#page-content-wrapper {
 		padding: 20px;
 		padding-top:0px;
-		padding-left:40px;
+		padding-left:2px;
 		position: relative;
+		left:3em;
 	}
 	#wrapper.toggled #page-content-wrapper {
 		position: relative;

@@ -20,7 +20,7 @@
 <script src="lib/angular/angular.js"></script>
 <script src="lib/angular/angular-ui-router.js"></script>
 <script type="text/javascript" src="lib/angular/angular-ui-tree.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-smart-table/2.0.1/smart-table.min.js"></script>
+<script src="lib/angular/smart-table.min.js"></script>
 <script src="lib/bootstrap-3.3.4/js/ui-bootstrap-tpls-0.12.1.js"></script>
 
 
@@ -35,11 +35,11 @@
 </head>
 
 <body>
-<div ng-controller="progressIndicator">
-<div ng-show="isDataLoaded">
+ <div ng-controller="progressIndicator">
+<div ng-show="isDataLoaded.dataLoaded">
 <div id="overlay" class="currently-loading centeredImage" style="position:absolute"><img src="images/loading.gif" alt="Be patient..." align="middle" style="margin-top:10em !important;"/></div>
 </div>
-</div>
+</div> 
 <!-- NAVIGATION -->
 <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color:#2B5797;" role="navigation">
     <div class="navbar-header">

@@ -1,12 +1,19 @@
 <div ng-controller="modalAddressInstanceCtrl" >
-	<form role="form" class="form-horizontal well well-sm form-horizontal top-border container"  id="searchform" name="searchform" ng-submit="processForm()">
-		
+	<form role="form"  name="myForm" class="form-horizontal well well-sm form-horizontal top-border container"  id="searchform" name="searchform" ng-submit="processForm()" novalidate>
+		 <div class="alert alert-danger alert-dismissible text-center" ng-show="areFieldEmpty" role="alert">
+  			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  			<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true">&nbsp;</span>Please select atleast one criteria since there are large number of records 
+		</div>
 		<div class="col-lg-6 col-md-6 col-sm-6">	
 		<div class="form-group">		 
 	    	<label  class="hidden-xxs col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Street Name</label>
 	    	<div class=" col-xxs-12 col-lg-8 col-md-8 col-sm-8 col-xs-8">
 	    			    		<!-- <input type="text" class="form-control input-sm"  ng-model="streetname"  id="streetname" ng-model="streetname"  data-provide="typeahead"   placeholder="Street Name" tabindex="2"> -->
-	    		<input type="text"  id="customernumber" ng-model="streetname" typeahead="street for street in getStreets($viewValue)" typeahead-min-length=2 class="form-control input-sm"  maxlength="10"  placeholder="Street Name" tabindex="2">
+
+	    		<input type="text"  id="customernumber" name="customernumber" ng-model="streetname" typeahead="street for street in getStreets($viewValue)" class="form-control input-sm"  maxlength="10"  placeholder="Street Name" tabindex="2" required>
+<!-- 	    		<span style="color:red" ng-show="myForm.customernumber.$dirty && myForm.customernumber.$invalid"> -->
+<!-- 				<span ng-show="myForm.customernumber.$error.required"><b>Street Name is required.</b></span> -->
+
 	    	</div>
 	    </div>
 	    <div class="form-group">
@@ -132,11 +139,10 @@
 		        </div>
        </div>
   		</div>
-	 </form> 
+	 </form>  
 <div ng-show="showAddress == true" class="well well-white table-responsive container"> 
-	  <input type="text" ng-model="valueForSearch" class="pull-right col-md-2 input-sm form-control" placeholder="Global Search......."  ng-change="searchData()"  style="width: 20%;"/>
-
-<div ng-if="showAddress == true">
+<input type="text" ng-model="valueForSearch" class="pull-right col-md-2 input-sm form-control" placeholder="Global Search......."  ng-change="searchData()"  style="width: 20%;"/>
+<div ng-if="showAddress == true && areFieldEmpty == false" class="well well-white table-responsive container" style="overflow-y:scroll;height:46em">
 <table st-table="displayedCollection"  st-pipe="getPaginatedData" st-safe-src="rowCollection" class="table table-striped ">
 		<thead>
 		<tr>
