@@ -111,11 +111,19 @@
 								// tableState.pagination.numberOfPages =$scope.itemsByPage;
 								// console.log(tableState.pagination.start);
 							
-									$scope.currentPage= tableState.pagination.start;
-									$scope.page=tableState.pagination.start/10+1;	
 
+								 tableState.pagination.numberOfPages =$scope.itemsByPage;
+									 if($scope.init==true || $scope.currentPage != tableState.pagination.start) {
+										 $scope.isLoading = true;
+										 $scope.currentPage= tableState.pagination.start;
+										 $scope.page=tableState.pagination.start/10+1;	
+										// $scope.processForm();
+										// console.log('page number'+tableState.pagination.start);
+										 $scope.valueForSearch='';
+
+									
 									//get the data
-									if($scope.init==true){
+							
 									CustomerService
 									.getInstallations(
 											$stateParams.cusNo,$scope.page)
@@ -126,6 +134,7 @@
 														$scope.displayed = [].concat($scope.rowCollection.installations);
 														$scope.isLoading = false;
 														$scope.init=false;
+														tableState.pagination.numberOfPages =$scope.itemsByPage;
 													});
 								};
 								};
