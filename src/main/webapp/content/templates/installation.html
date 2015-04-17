@@ -1,4 +1,4 @@
-<div ng-controller="instController" class="panel panel-default">
+<div ng-controller="instController"  id="insthtml" class="panel panel-default">
 
 
 <div ng-show="!isLoading" class=""> 
@@ -11,25 +11,34 @@
 			<th st-sort="houseno">House Number</th>
 			<th st-sort="floor">Floor</th>
 			<th st-sort="side">Side</th>
-			<th st-sort="postalcode">Postal Code</th>
-			<th st-sort="postalarea">Post- Area</th>
- 	
-			<th st-sort="movingdate">Movement Date</th>
+			<th st-sort="location">Location</th>
+			<th>Status</th>
+			<th ng-show="showCol">Locality</th>
+			<th ng-show="showCol" st-sort="postalcode">Postal Code</th>
+			<th ng-show="showCol" st-sort="postalarea">Post- Area</th>
+			<th ng-show="showCol" st-sort="postalarea">Fra kundenr</th>
+			<th ng-show="showCol" st-sort="postalarea">Til kundenr</th>
+			<th ng-show="showCol" st-sort="movingdate">Movement Date</th>
 			
 
 		</tr>
 		</thead>
 		<tbody ng-show="!isLoading">
 		<tr st-select-row="row" st-select-mode="multiple" ng-repeat="row in displayed">
-
-		
 			<td>{{row.address.streets.streetname}}</td>
 			<td>{{row.address.houseno}}</td>
 			<td>{{row.address.floor}}</td>
 			<td>{{row.address.door}}</td>
-			<td>{{row.address.postalcode}}</td>
-			<td>{{row.address.streets.municipalities.municipalityname}}</td>
-			<td>{{row.movingdate | date}}</td>
+			<td><input type="text"></td>
+			<td><select ng-model="statusSelected"
+                ng-options="opt as opt.label for opt in options">
+            </select></td>
+            <td ng-show="showCol"></td>
+			<td ng-show="showCol">{{row.address.postalcode}}</td>
+			<td ng-show="showCol">{{row.address.streets.municipalities.municipalityname}}</td>
+			<td ng-show="showCol"></td>
+			<td ng-show="showCol"></td>
+			<td ng-show="showCol">{{row.movingdate | date}}</td>
 			
 			
 <!-- 			<td>{{row.address.streets.streetcode}}</td> -->

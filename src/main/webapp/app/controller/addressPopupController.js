@@ -35,7 +35,7 @@
 
 			 $scope.isLoading = true;
 
-			 var data = { floor: $scope.floor,door: $scope.door};
+			 var data = { floor: $scope.floor,door: $scope.door,streetname:$scope.streetname};
 
 			 AddressService.searchAddress(data,$scope.page).then(function (result) {
 				 $scope.rowCollection=result.addresses;

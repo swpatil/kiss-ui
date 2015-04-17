@@ -46,6 +46,21 @@ angular.module('kissApp').service('CustomerService', function ($http, $q) {
         return d.promise;
     };
     
+    this.getCustomerNames = function(cuNum){
+    	var d = $q.defer();
+
+        $http.get('/kiss-rest/cableunit/search/cus/' + cuNum)
+            .success(function (response) {
+				d.resolve(response);
+            })
+            .error(function () {
+				d.reject();
+            });
+
+        return d.promise;
+    };
+
+    
     this.getStreets = function(streetName){
     	var d = $q.defer();
 

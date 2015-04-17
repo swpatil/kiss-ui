@@ -31,7 +31,7 @@
 	$(".toogleButton").click(function() {
 		
 		$("#openButton").toggle();
-	
+		//angular.element(document.getElementById('insthtml')).scope().showcol = true;
 	    	$('#form_div').animate({
 		    	 width: 'toggle'
 		    }, 200,function(){
@@ -40,6 +40,22 @@
 			$("#wrapper").toggleClass("toggled");
          
 	});
+	
+	$("#openButton").click(function(){
+		var $scope =angular.element(document.getElementById('insthtml')).scope();
+		$scope.$apply(function(){
+			$scope.showCol = true;
+		});
+	});
+	
+	$("#closeButton").click(function(){
+		var $scope =angular.element(document.getElementById('insthtml')).scope();
+		$scope.$apply(function(){
+			$scope.showCol = false;
+		});
+	});
+	
+
 
 	
 </script>

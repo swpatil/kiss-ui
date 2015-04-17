@@ -8,6 +8,11 @@
 				$scope.getCustomers = function(val){
 					return CustomerService.getCustomers(val);
 				}
+				
+				$scope.custoName = undefined;
+				$scope.getCustomerNames = function(val){
+					return CustomerService.getCustomerNames(val);
+				}
 			}]);
 
 	angular.module('kissApp').controller('addressSearchController',
@@ -93,6 +98,13 @@
 								$scope.page=1;
 								$scope.currentPage = 0;
 								$scope.init=true;
+								$scope.showCol = false;
+								$scope.options = [
+								                  { label: 'Stik Opsat', value: 'Stik Opsat' },
+								                  { label: 'Fordelerboks Opsat', value: 'Fordelerboks Opsat' },
+								                  { label: 'ikke Opdateret', value: 'ikke Opdateret' }
+								                ];
+								$scope.statusSelected = $scope.options[0];
 							
 								
 								$scope.getIndtallations = function(tableState) {
