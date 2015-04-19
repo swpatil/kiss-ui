@@ -1,7 +1,7 @@
 (function() {
 	
 
-	angular.module('kissApp').controller('modalAddressInstanceCtrl',['$scope','AddressService','$stateParams','$state','CustomerService','$filter', function ($scope,AddressService,$stateParams,$state,CustomerService,$filter) {
+	angular.module('kissApp').controller('modalAddressInstanceCtrl',['$scope','$rootScope','AddressService','$stateParams','$state','CustomerService','$filter', function ($scope,$rootScope,AddressService,$stateParams,$state,CustomerService,$filter) {
 		 $scope.rowCollection = [];
 		 $scope.addressId=[];
 		 $scope.showAddress=false;
@@ -13,6 +13,7 @@
 		 $scope.custNo=$stateParams.cusNo;
 		 $scope.streetname = undefined;
 		 $scope.areFieldEmpty = false;
+		 $scope.hideSearch = false;
 		 $scope.getStreets = function(val){
 			 return CustomerService.getStreets(val);
 		 };
@@ -32,12 +33,30 @@
 					var filtered = $scope.valueForSearch ? $filter('filter')($scope.rowCollection, $scope.valueForSearch) : $scope.rowCollection;
 					 $scope.displayedCollection = [].concat(filtered);
 			}
+		$scope.searchAgain=function(){
+			$scope.hideSearch = false;
+			
+		}
+		$scope.addSelected=function(){
+			var addData = { addressIds: $scope.addressId,cableUnitNumber:$scope.custNo};
+			console.log(addData);
+			 AddressService.addInstallationsOnAddress(addData).then(function (result) {
+				 $rootScope.infoMessage=result.description;
+				 if(result.code=='101')
+				 $rootScope.displayingMsgType="success";
+				 //$rootScope.displayingMsgType="failure";
+				 $rootScope.displayingMsgCode=result.code;
+				 $rootScope.displayingMsgContent=result.description;
+				 $state.go("customer",{cusNo:$scope.custNo});
+			 });
+			
+		}
 		 $scope.processForm = function() {
 
 			 $scope.isLoading = true;
 
 
-			 var data = { floor: $scope.floor,door: $scope.door};
+			 var data = { floor: $scope.floor,door: $scope.door,streetname:$scope.streetname};
 			 $scope.areFieldEmpty = ($scope.floor == "" || $scope.floor == undefined) && ($scope.door== undefined || $scope.door == "") && ($scope.streetname == "" ||  $scope.streetname == undefined);
 				if($scope.areFieldEmpty){
 					return;
@@ -50,6 +69,7 @@
 				 $scope.displayedCollection = [].concat($scope.rowCollection);
 				 $scope.showAddress=true;
 				 $scope.isLoading = false;
+				 $scope.hideSearch=true;
 
 			 });
 

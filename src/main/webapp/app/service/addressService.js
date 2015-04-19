@@ -19,18 +19,23 @@
 
 							return d.promise;
 						};
-						this.addInstallationsOnAddress = function(cusNo) {
+						this.addInstallationsOnAddress = function(addData) {
 							var d = $q.defer();
-							$http.get(
-									'/kiss-rest/cableunit/cu/'
-											+ cusNo).success(
-									function(response) {
-										d.resolve(response);
-									}).error(function() {
-								d.reject();
-							});
-
-							return d.promise;
+							globalData.dataLoaded = true;
+					        $http.post('/kiss-rest/installations/createInstallations',addData).
+					        success(function(data, status, headers, config) {
+					          // this callback will be called asynchronously
+					          // when the response is available
+					        	d.resolve(data);
+					        	console.log("addition"+data);
+					        	globalData.dataLoaded = false;
+					        }).
+					        error(function(data, status, headers, config) {
+					          // called asynchronously if an error occurs
+					          // or server returns response with an error status.
+					        	d.reject();
+					        });
+					        return d.promise;
 						};
 
 						this.searchAddress = function(postData,page) {

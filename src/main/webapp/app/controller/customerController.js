@@ -87,10 +87,11 @@
 					'instController',
 					[
 							'$scope',
+							'$rootScope',
 							'$stateParams',
 							'$filter',
 							'CustomerService','$modal',
-							function($scope, $stateParams, $filter,
+							function($scope, $rootScope,$stateParams, $filter,
 									CustomerService,$modal) {
 								$scope.isLoading = true;
 								$scope.rowCollection = [];
@@ -99,6 +100,13 @@
 								$scope.currentPage = 0;
 								$scope.init=true;
 								$scope.showCol = false;
+								$scope.displayingMsgType=$rootScope.displayingMsgType;
+								$scope.displayingMsgCode=$rootScope.displayingMsgCode;
+								$scope.displayingMsgContent=$rootScope.displayingMsgContent;
+								
+								$rootScope.displayingMsgType=undefined;
+								$rootScope.displayingMsgCode=undefined;
+								$rootScope.displayingMsgContent=undefined;
 								$scope.options = [
 								                  { label: 'Stik Opsat', value: 'Stik Opsat' },
 								                  { label: 'Fordelerboks Opsat', value: 'Fordelerboks Opsat' },
@@ -154,6 +162,9 @@
 									var filtered = $scope.valueForSearch ? $filter('filter')($scope.rowCollection.installations, $scope.valueForSearch) : $scope.rowCollection.installations;
 									 $scope.displayed = [].concat(filtered);
 							}
+							$scope.isUndefined = function (data) {
+								    return (typeof data === "undefined");
+								}
 									
 						
 
