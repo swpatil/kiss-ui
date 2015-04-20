@@ -42,9 +42,12 @@
 			console.log(addData);
 			 AddressService.addInstallationsOnAddress(addData).then(function (result) {
 				 $rootScope.infoMessage=result.description;
-				 if(result.code=='101')
-				 $rootScope.displayingMsgType="success";
-				 //$rootScope.displayingMsgType="failure";
+				 if(result.code === '101'){
+					 $rootScope.displayingMsgType="success";
+				 }
+				 else{
+					 $rootScope.displayingMsgType="failure";
+				 }
 				 $rootScope.displayingMsgCode=result.code;
 				 $rootScope.displayingMsgContent=result.description;
 				 $state.go("customer",{cusNo:$scope.custNo});
