@@ -339,7 +339,7 @@ table.table-search {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    height: 600px; /* this can vary */
+    height: 40em; /* this can vary */
 }
 table.table-installations {
     box-sizing: border-box;
@@ -347,7 +347,7 @@ table.table-installations {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    height: 30em; /* this can vary */
+    height: 35em; /* this can vary */
 }
 
 table * {
@@ -405,3 +405,9 @@ tfoot td {
 a {
 	cursor: pointer;
 }
+#installationTable.table-condensed > thead > tr > th, .table-condensed > tbody > tr > th, .table-condensed > tfoot > tr > th, .table-condensed > thead > tr > td, .table-condensed > tbody > tr > td, .table-condensed > tfoot > tr > td{
+	padding:2px !important;
+}
+ #addressTable.table > tbody > tr > td{
+	padding: 0px !important;
+} 
