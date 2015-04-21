@@ -13,20 +13,34 @@
 </div>
 
 <div ng-show="!isLoading" class=""> 
-	  <input type="text" ng-model="valueForSearch" class="pull-right col-md-2 input-sm form-control" placeholder="Global Search......."  ng-change="searchData()"  style="width: 20%;"/>
-	  </div>
+    	
+	 
+	  <div class="col-md-12">
+		</br>
+		<a ui-sref="address({cusNo: custNo})">
+                 <button id="addInstallations"  class="btn btn-xs btn-default" >Add Installations</button>
+        </a>
+      	 <button type="button" class="btn btn-xs btn-default">Remove Installations</button>
+		 <button type="button" class="btn btn-xs  btn-default">Move</button>
+		 <button type="button" ng-show="showCol" class="btn btn-xs  btn-default">Undo Movement</button>
+		 <button type="button" ng-show="showCol" class="btn btn-xs  btn-default">Select Installations to XAL</button>
+		 <button type="button" ng-show="showCol" class="btn btn-xs  btn-default">View History</button>
+		 <button type="button" class="btn btn-xs  btn-default glyphicon glyphicon-export"></button>		 		 		 
+		<input type="text" ng-model="valueForSearch" class="pull-right col-md-2 input-sm form-control" placeholder="Global Search......."  ng-change="searchData()"  style="width: 20%;"/>
+       </div>
+</div>
 <table st-table="displayed" st-safe-src="rowCollection" st-pipe="getIndtallations" class="table table-striped table-installations ">
 		<thead>
 		<tr>
 			<th st-sort="streetname">Street Name</th>
-			<th st-sort="houseno">House Number</th>
+			<th st-sort="houseno">House Nr.</th>
 			<th st-sort="floor">Floor</th>
 			<th st-sort="location">Location</th>
 			<th st-sort="side">Side</th>
 			<th>Status</th>
 			<th ng-show="showCol" >Locality</th>
 			<th  ng-show="showCol" st-sort="postalcode">Postal Code</th>
-			<th  ng-show="showCol" st-sort="postalarea">Post- Area</th>
+			<th  ng-show="showCol" st-sort="postalarea">Post-Area</th>
 			<th  ng-show="showCol" st-sort="postalarea">Fra kundenr</th>
 			<th ng-show="showCol"  st-sort="postalarea">Til kundenr</th>
 			<th  ng-show="showCol" st-sort="movingdate">Movement Date</th>
@@ -80,10 +94,5 @@
 		</tr>
 		</tfoot>
 	</table>
- 	<div class="well center-block blackBorder" style="width:98%">
-    	<a ui-sref="address({cusNo: custNo})">
-               <button id="addInstallations"  class="btn btn-default" >Add Installations</button>
-        </a>
-	</div>
 </div>
 
