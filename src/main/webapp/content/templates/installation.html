@@ -18,14 +18,14 @@
 	  <div class="col-md-12">
 		</br>
 		<a ui-sref="address({cusNo: custNo})">
-                 <button id="addInstallations"  class="btn btn-xs btn-default" >Add Installations</button>
+                 <button id="addInstallations"  class="btn btn-xs btn-primary" >Add Installations</button>
         </a>
-      	 <button type="button" class="btn btn-xs btn-default">Remove Installations</button>
-		 <button type="button" class="btn btn-xs  btn-default">Move</button>
-		 <button type="button" ng-show="showCol" class="btn btn-xs  btn-default">Undo Movement</button>
-		 <button type="button" ng-show="showCol" class="btn btn-xs  btn-default">Select Installations to XAL</button>
-		 <button type="button" ng-show="showCol" class="btn btn-xs  btn-default">View History</button>
-		 <button type="button" class="btn btn-xs  btn-default glyphicon glyphicon-export"></button>		 		 		 
+      	 <button type="button" class="btn btn-xs btn-primary">Remove Installations</button>
+		 <button type="button" class="btn btn-xs  btn-primary">Move</button>
+		 <button type="button" ng-show="showCol" class="btn btn-xs  btn-primary">Undo Movement</button>
+		 <button type="button" ng-show="showCol" class="btn btn-xs  btn-primary">Select Installations to XAL</button>
+		 <button type="button" ng-show="showCol" class="btn btn-xs  btn-primary">View History</button>
+		 <button type="button" class="btn btn-xs  btn-primary glyphicon glyphicon-export"></button>		 		 		 
 		<input type="text" ng-model="valueForSearch" class="pull-right col-md-2 input-sm form-control" placeholder="Global Search......."  ng-change="searchData()"  style="width: 20%;"/>
        </div>
 </div>
@@ -50,7 +50,8 @@
 		</thead>
 		<tbody ng-show="!isLoading">
 		<tr st-select-row="row" st-select-mode="multiple" ng-repeat="row in displayed">
-			<td>{{row.address.streets.streetname}}</td>
+			<td><a popover="{{row.address.postalcode}} : {{row.address.streets.municipalities.municipalityname}}" popover-title="Postal Code : Post-Area"  popover-trigger="mouseenter">{{row.address.streets.streetname}}</a>
+			</td>
 			<td>{{row.address.houseno}}</td>
 			<td>{{row.address.floor}}</td>
 			
