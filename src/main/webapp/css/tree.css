@@ -56,9 +56,9 @@ div[data-tree-model] li .selected {
   padding: 1px 5px;
 }
 .st-selected{
-//  border-left:4px solid black;
-  background: #686869 !important;
-  color: white !important;
+  border-left: 4px solid rgb(43, 87, 151);
+//  background: #686869 !important;
+ // color: white !important;
 }
 
 .tree {

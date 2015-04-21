@@ -4,9 +4,11 @@ html,body {
 }
 
 body {
-	//background-image: url('../images/background.png');
+	background-image: url('../images/background.png');
 	//font-size: 12px;
 	padding-top: 60px;
+	overflow-x:hidden;
+	overflow-y:hidden;
 }
 
 /*!
@@ -50,7 +52,8 @@ body {
 }
 
 #page-content-wrapper {
-	width: 100%;
+	width: 97%
+	height:80%;
 	position: absolute;
 	padding: 15px;
 	padding-top:0px !important;
@@ -116,12 +119,15 @@ body {
 		padding-left: 0;
 	}
 	#sidebar-wrapper {
-		width: 320px;
+		width: 25%;
+		height: 88%;
 	}
 	#wrapper.toggled #sidebar-wrapper {
 		width: 0;
 	}
 	#page-content-wrapper {
+		width: 97%;
+		height: 88%;
 		padding: 20px;
 		padding-top:0px;
 		padding-left:2px;
@@ -341,7 +347,7 @@ table.table-installations {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    height: 350px; /* this can vary */
+    height: 30em; /* this can vary */
 }
 
 table * {
@@ -386,4 +392,13 @@ tfoot {
 tfoot td {
     width: 100%;
     display: inline-block;
+}
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td{
+	  display: inline-flex;
+}
+.pagination{
+	  margin: 3px 0 !important;
+}
+.article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary{
+	margin:auto;
 }
