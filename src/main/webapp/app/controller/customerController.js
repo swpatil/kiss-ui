@@ -23,17 +23,21 @@
 	angular.module('kissApp').controller('cutabController',
 			function($scope, $state, $stateParams) {
 
-				$scope.tabs = [ {
+				$scope.tabs = [{
+					title : 'Cable Unit Details',
+					templateUrl : 'content/templates/underDevelopment.html'
+				}, {
 					title : 'Installation',
 					show : true,
 					templateUrl : 'content/templates/installation.html'
-				}, {
-					title : 'Cable Unit Details',
-					templateUrl : 'content/templates/address-search.html'
-				}, {
-					title : 'Products',
-					templateUrl : 'content/templates/address-search.html'
-				} ];
+				},{
+					title : 'Documents',
+					templateUrl : 'content/templates/underDevelopment.html'
+				},{
+					title : 'Party Actors',
+					templateUrl : 'content/templates/underDevelopment.html'
+				}
+				];
 
 			});
 
@@ -43,14 +47,18 @@
 				$scope.tabs = [ {
 					title : 'Agreements about Products',
 					show : true,
-					templateUrl : 'content/templates/address-search.html'
+					templateUrl : 'content/templates/underDevelopment.html'
 				}, {
 					title : 'CaseWorkFlow',
-					templateUrl : 'content/templates/address-search.html'
+					templateUrl : 'content/templates/underDevelopment.html'
 				}, {
-					title : 'Address',
-					templateUrl : 'content/templates/address-search.html'
-				} ];
+					title : 'Document Templates',
+					templateUrl : 'content/templates/underDevelopment.html'
+				},{
+					title : 'Addresses',
+					templateUrl : 'content/templates/underDevelopment.html'
+				},
+				];
 
 
 			});
