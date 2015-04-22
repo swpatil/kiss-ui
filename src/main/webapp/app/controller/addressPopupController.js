@@ -117,6 +117,9 @@
 				 $scope.valueForSearch='';
 
 			 }
+			 $scope.$watch('itemsByPage',function(newValue,oldValue,scope){
+				 tableState.pagination.numberOfPages =scope.itemsByPage;
+			 })
 
 
 
