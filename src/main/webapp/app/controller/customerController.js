@@ -1,8 +1,9 @@
 (function() {
 
-	angular.module('kissApp').controller('customerSearchController',['$scope','CustomerService',
-			function($scope,CustomerService) {
-
+	angular.module('kissApp').controller('customerSearchController',['$scope','CustomerService','$state',
+			function($scope,CustomerService,$state) {
+		
+				$scope.areFieldEmpty = false;
 				
 				$scope.custNo = undefined;
 				$scope.getCustomers = function(val){
@@ -13,6 +14,15 @@
 				$scope.getCustomerNames = function(val){
 					return CustomerService.getCustomerNames(val);
 				}
+				 $scope.processForm = function() {
+					 $scope.areFieldEmpty = false;
+					 $scope.areFieldEmpty = ($scope.custNo == "" || $scope.custNo == undefined) && ($scope.custoName== undefined || $scope.custoName == "");
+						if($scope.areFieldEmpty){
+							return;
+						}
+						$state.go("customer",{cusNo:$scope.custNo});
+					 
+				 }
 			}]);
 
 	angular.module('kissApp').controller('addressSearchController',

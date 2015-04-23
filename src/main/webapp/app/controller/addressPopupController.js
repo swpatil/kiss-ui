@@ -96,6 +96,32 @@
 					 tableState.pagination.start= $scope.currentPage;
 				 console.log("predicate"+tableState.sort.predicate);
 				 if (tableState.sort.predicate) {
+					 if(tableState.sort.predicate === 'streetname'){
+						 $scope.displayedCollection = $filter('orderBy')($scope.rowCollection, 'streets.streetname', tableState.sort.reverse);
+						 
+					 }
+					 else if(tableState.sort.predicate === 'streetcode'){
+						 $scope.displayedCollection = $filter('orderBy')($scope.rowCollection, 'streets.streetcode', tableState.sort.reverse);
+						 
+					 }
+					 else if(tableState.sort.predicate === 'municipalitycode'){
+						 $scope.displayedCollection = $filter('orderBy')($scope.rowCollection, 'streets.municipalities.municipalitycode', tableState.sort.reverse);
+						 
+					 }
+					 else if(tableState.sort.predicate === 'regionid'){
+						 $scope.displayedCollection = $filter('orderBy')($scope.rowCollection, 'streets.municipalities.regions.regionid', tableState.sort.reverse);
+						 
+					 }
+					 else if(tableState.sort.predicate === 'regionname'){
+						 $scope.displayedCollection = $filter('orderBy')($scope.rowCollection, 'streets.municipalities.regions.regionname', tableState.sort.reverse);
+						 
+					 }
+					 else if(tableState.sort.predicate === 'source'){
+						 $scope.displayedCollection = $filter('orderBy')($scope.rowCollection, 'streets.source', tableState.sort.reverse);
+						 
+					 }
+					 else
+						 
 					 $scope.displayedCollection = $filter('orderBy')($scope.rowCollection, tableState.sort.predicate, tableState.sort.reverse);
 				 }
 
