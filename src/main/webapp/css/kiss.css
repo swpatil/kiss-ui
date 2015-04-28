@@ -411,3 +411,14 @@ a {
  #addressTable.table > tbody > tr > td{
 	padding: 0px !important;
 } 
+.select-page {
+  width: 50px;
+  text-align: center;
+}
+.pagination li a input {
+  padding: 0;
+  margin: -5px 0;
+}
+.pullcenter{
+	margin:auto;
+}

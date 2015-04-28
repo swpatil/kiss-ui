@@ -50,14 +50,14 @@ angular.module('kissApp').directive('csSelect', function () {
                 if (newValue === true) {
                     element.parent().addClass('st-selected');
                     scope.$parent.addressId.push(scope.row.id.addressId);
-                    console.log('after sekection'+scope.$parent.addressId);
+                    //console.log('after sekection'+scope.$parent.addressId);
                 } else {
                     element.parent().removeClass('st-selected');
                     var index = scope.$parent.addressId.indexOf(scope.row.id.addressId);
                     if (index > -1) {
                     	scope.$parent.addressId.splice(index, 1);
                     }
-                    console.log('after removal'+scope.$parent.addressId);
+                   // console.log('after removal'+scope.$parent.addressId);
                 }
             });
         }
@@ -72,4 +72,15 @@ angular.module('kissApp').directive('stRatio',function(){
         
       }
     };
+});
+angular.module('kissApp').directive('pageSelect', function() {
+  return {
+    restrict: 'E',
+    template: '<input type="text" class="select-page" ng-model="inputPage" ng-change="selectPage(inputPage)">',
+    link: function(scope, element, attrs) {
+      scope.$watch('currentPage', function(c) {
+        scope.inputPage = c;
+      });
+    }
+  }
 });
