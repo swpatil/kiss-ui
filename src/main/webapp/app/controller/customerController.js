@@ -1,7 +1,7 @@
 (function() {
 
-	angular.module('kissApp').controller('customerSearchController',['$scope','CustomerService','$state',
-			function($scope,CustomerService,$state) {
+	angular.module('kissApp').controller('customerSearchController',['$scope','CustomerService','$state','hotkeys',
+			function($scope,CustomerService,$state,hotkeys) {
 		
 				$scope.areFieldEmpty = false;
 				
@@ -23,6 +23,31 @@
 						$state.go("customer",{cusNo:$scope.custNo});
 					 
 				 }
+				 
+				 
+				 hotkeys.bindTo($scope)
+				    .add({
+				      combo: 'ctrl+f',
+				      description: 'Search Customer',
+				      callback: function(event) {
+				    	  event.preventDefault();
+				    	  $scope.processForm();
+				      }
+				    })
+				    // you can chain these methods for ease of use:
+				    .add ({
+				    	combo: 'ctrl+home',
+					      description: 'Clear Form',
+					      callback: function() {				    	  
+					    	  $scope.clearForm();
+					      }
+				    });
+				 
+				 $scope.clearForm = function(){
+					 $scope.custNo = undefined;
+					 $scope.custoName = undefined;
+					 $scope.areFieldEmpty = false;
+				 }
 			}]);
 
 	angular.module('kissApp').controller('addressSearchController',
@@ -31,7 +56,7 @@
 			});
 
 	angular.module('kissApp').controller('cutabController',
-			function($scope, $state, $stateParams) {
+			function($scope, $state, $stateParams,hotkeys) {
 
 				$scope.tabs = [{
 					title : 'Cable Unit Details',
@@ -48,6 +73,28 @@
 					templateUrl : 'content/templates/underDevelopment.html'
 				}
 				];
+				
+				 hotkeys.bindTo($scope)
+				    .add({
+				      combo: 'ctrl+b',
+				      description: 'Hide/Show tree view',
+				      callback: function(event) {
+				    	  $scope.hideTree();
+				      }
+				    })
+				    
+				    $scope.hideTree = function() {
+						
+						$("#openButton").toggle();
+						//angular.element(document.getElementById('insthtml')).scope().showcol = true;
+					    	$('#form_div').animate({
+						    	 width: 'toggle'
+						    }, 200,function(){
+						    	$("#closeButton").toggle();
+						    });
+							$("#wrapper").toggleClass("toggled");
+				         
+					};
 
 			});
 

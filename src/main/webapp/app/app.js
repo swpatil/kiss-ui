@@ -1,6 +1,6 @@
 (function() {
 
-var kissApp = angular.module('kissApp', [ 'ui.router','smart-table','angularTreeview','ui.bootstrap']);
+var kissApp = angular.module('kissApp', [ 'ui.router','smart-table','angularTreeview','ui.bootstrap','cfp.hotkeys']);
 kissApp.service('globalData',function(){
 	return{
 		dataLoaded : false
