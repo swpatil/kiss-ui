@@ -84,3 +84,35 @@ angular.module('kissApp').directive('pageSelect', function() {
     }
   }
 });
+angular.module('kissApp').directive("droolsCheck",
+        function() {
+            function link( $scope, element, attributes ) {
+
+                // 
+                var droolsArray = attributes.droolsCheck;
+
+                // I am the optional slide duration.
+                var  droolsConstraintId=attributes.droolsConstraint;
+                $scope.$watch(
+                		droolsArray,
+                		function(droolsNewValue, droolsOldValue ) {
+                			if(droolsNewValue !=  droolsOldValue){
+                				if(droolsNewValue.enableFields.indexOf(droolsConstraintId) >-1){
+                					element.prop( "disabled", false );
+
+                				}
+                			}
+                		}
+                );
+
+            }
+
+
+            // Return the directive configuration.
+            return({
+                link: link,
+                restrict: "A"
+            });
+
+        }
+    );

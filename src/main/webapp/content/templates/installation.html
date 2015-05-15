@@ -18,14 +18,14 @@
 	  <div class="col-md-12">
 		</br>
 		<a ui-sref="address({cusNo: custNo})">
-                 <button id="addInstallations"  class="btn btn-xs btn-primary" >Add Installations</button>
+                 <button id="addInstallations" drools-check="drools" drools-constraint="addInstallations"   class="btn btn-xs btn-primary" ng-disabled="true">Add Installations</button>
         </a>
-      	 <button type="button" class="btn btn-xs btn-primary">Remove Installations</button>
-		 <button type="button" class="btn btn-xs  btn-primary">Move</button>
-		 <button type="button" ng-show="showCol" class="btn btn-xs  btn-primary">Undo Movement</button>
-		 <button type="button" ng-show="showCol" class="btn btn-xs  btn-primary">Select Installations to XAL</button>
-		 <button type="button" ng-show="showCol" class="btn btn-xs  btn-primary">View History</button>
-		 <button type="button" class="btn btn-xs  btn-primary glyphicon glyphicon-export"></button>		 		 		 
+      	 <button type="button" drools-check="drools" drools-constraint="removeInstallations" class="btn btn-xs btn-primary" ng-disabled="true">Remove Installations</button>
+		 <button type="button" drools-check="drools" drools-constraint="move" class="btn btn-xs  btn-primary" ng-disabled="true">Move</button>
+		 <button type="button" drools-check="drools" drools-constraint="undoMovement" ng-show="showCol" class="btn btn-xs  btn-primary" ng-disabled="true">Undo Movement</button>
+		 <button type="button" drools-check="drools" drools-constraint="toXAL" ng-show="showCol" class="btn btn-xs  btn-primary" ng-disabled="true">Select Installations to XAL</button>
+		 <button type="button" drools-check="drools" drools-constraint="viewHistory" ng-show="showCol" class="btn btn-xs  btn-primary" ng-disabled="true">View History</button>
+		 <button type="button" drools-check="drools" drools-constraint="exportExcel" class="btn btn-xs  btn-primary glyphicon glyphicon-export" ng-disabled="true"></button>		 		 		 
 		<input type="text" ng-model="valueForSearch" class="pull-right col-md-2 input-sm form-control" placeholder="Global Search......."  ng-change="searchData()"  style="width: 20%;"/>
        </div>
 </div>
@@ -55,7 +55,7 @@
 			<td>{{row.address.houseno}}</td>
 			<td>{{row.address.floor}}</td>
 			
-			<td><input type="text"></td>
+			<td><input drools-check="drools" drools-constraint="removeInstallations" type="text" ng-disabled="true"></td>
 			<td>{{row.address.door}}</td>
 			<td><select ng-model="statusSelected" 
                 ng-options="opt as opt.label for opt in options">
