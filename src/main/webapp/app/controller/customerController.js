@@ -53,8 +53,8 @@
 	angular.module('kissApp').controller('addressSearchController',
 			function($scope) {
 				$scope.message = "Hello from Address Search";
-			});
-
+			}); 
+	
 	angular.module('kissApp').controller('cutabController',
 			function($scope, $state, $stateParams,hotkeys) {
 
@@ -155,9 +155,12 @@
 							'$rootScope',
 							'$stateParams',
 							'$filter',
-							'CustomerService','$modal',
+							'$modal',
+							'CustomerService','DroolsService',
 							function($scope, $rootScope,$stateParams, $filter,
-									CustomerService,$modal) {
+									$modal,CustomerService,DroolsService) {
+								//Variable to hold drools validations results
+								$scope.drools = [];
 								$scope.isLoading = true;
 								$scope.rowCollection = [];
 								$scope.custNo= $stateParams.cusNo;
@@ -220,6 +223,9 @@
 														$scope.isLoading = false;
 														$scope.init=false;
 														tableState.pagination.numberOfPages =$scope.itemsByPage;
+														DroolsService.getBusinessRules().then(function(droolsResponse) {
+															$scope.drools = droolsResponse;	
+														});
 													});
 								};
 								};
