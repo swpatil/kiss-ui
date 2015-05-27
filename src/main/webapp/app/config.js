@@ -1,9 +1,8 @@
 (function() {
 
-	angular
-			.module('kissApp')
-			.config(
-					function($stateProvider, $urlRouterProvider) {
+	kissApp.config(['$stateProvider','$urlRouterProvider','$httpProvider',
+					function($stateProvider, $urlRouterProvider,$httpProvider) {
+			$httpProvider.interceptors.push('kissInterceptor');
 
 						$urlRouterProvider.otherwise('/home');
 
@@ -85,5 +84,5 @@
 											controller : 'modalAddressInstanceCtrl'
 										});
 
-					});
+					}]);
 })();

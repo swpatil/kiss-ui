@@ -37,7 +37,7 @@
 </head>
 
 <body>
- <div ng-controller="progressIndicator">
+<div ng-controller="progressIndicator">
 <div ng-show="isDataLoaded.dataLoaded">
 <div id="overlay" class="currently-loading centeredImage" style="position:absolute"><img src="images/loading.gif" alt="Be patient..." align="middle" style="margin-top:10em !important;"/></div>
 </div>
@@ -75,6 +75,10 @@
 </nav>
 <!-- MAIN CONTENT -->
 <div class="">
+<div class="alert alert-danger alert-dismissible"  ng-show="showAlert" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <p ng-bind="exceptionData"></p>
+</div>
 
     <!-- THIS IS WHERE WE WILL INJECT OUR CONTENT ============================== -->
     <div ui-view></div>
