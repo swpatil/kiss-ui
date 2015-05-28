@@ -1,0 +1,33 @@
+{
+
+"choose_Search_page" :"Search",
+"choose_search_page_Address":"Adress",
+"choose_search_page_Customer":"C<u>u</u>stomer",
+"choose_search_page_Case":"C<u>a</u>se",
+"choose_search_page_Party":"Pa<u>r</u>ty",
+"choose_search_page_HeadEnd":"Head <u>e</u>nd",
+"choose_search_page_CableUnitProject":"Cable Unit Pro<u>j</u>ect",
+"choose_search_page_SalesConcept":"Sales Conce<u>p</u>t",
+"choose_search_page_Staff":"Staff",
+"choose_search_page_Street":"Street",
+
+"header_menu_toolbar_adminTools":"AdminTools",
+
+"choose_admin_tool_page_createPotentionalCase":" Create Potential Case",
+"choose_admin_tool_page_editRemarks":" Edit Remarks",
+"choose_admin_tool_page_editRemarkTypes":" Edit Remark Types",
+"choose_admin_tool_page_editSalesConcept":" Sales Concept",
+"choose_admin_tool_page_updateNettoPriceIndex":" Netto price index",
+"choose_admin_tool_page_yoAdministrator":"OK Administrator",
+"choose_admin_tool_page_processGenerator":"Process Generator",
+"choose_admin_tool_page_documentTypes":"Document Types",
+"choose_admin_tool_page_administerRoles":"Administer Roles",
+"choose_admin_tool_page_generalTypeValue":" General Type Value",
+"choose_admin_tool_page_general_type":" Choose General Type",
+"choose_admin_tool_page_cancelCase":" Cancel Case",
+"choose_admin_tool_page_deleteCableUnit":" Delete Customer",
+"choose_admin_tool_page_deleteCase":" Delete Case",
+"choose_admin_tool_page_deleteOffer":" Delete Offer",
+"choose_admin_tool_page_documentGenerator":" Document Generator"
+
+}

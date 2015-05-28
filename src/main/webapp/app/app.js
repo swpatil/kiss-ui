@@ -1,6 +1,6 @@
 //(function() {
 
-var kissApp = angular.module('kissApp', [ 'ui.router','smart-table','angularTreeview','ui.bootstrap','cfp.hotkeys']);
+var kissApp = angular.module('kissApp', [ 'ui.router','smart-table','angularTreeview','ui.bootstrap','cfp.hotkeys','pascalprecht.translate']);
 kissApp.service('globalData',function(){
 	return{
 		dataLoaded : false,
@@ -8,11 +8,17 @@ kissApp.service('globalData',function(){
 	};
 });
 
-kissApp.controller('progressIndicator',function($scope,globalData){
+kissApp.controller('progressIndicator',function($scope,globalData,$translate,$rootScope){
 	$scope.isDataLoaded = globalData;
+	
+	$rootScope.changeLanguage = function (langKey) {
+	    $translate.use(langKey);
+	  };
+	
 });
 
 kissApp.factory('kissInterceptor',function($rootScope,$location){
+	
 	var sessionInjector = {
 	        request: function(config) {
 	            return config;

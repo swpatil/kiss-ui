@@ -1,7 +1,21 @@
 (function() {
 
-	kissApp.config(['$stateProvider','$urlRouterProvider','$httpProvider',
-					function($stateProvider, $urlRouterProvider,$httpProvider) {
+	kissApp.config(['$stateProvider','$urlRouterProvider','$httpProvider','$translateProvider',
+					function($stateProvider, $urlRouterProvider,$httpProvider,$translateProvider) {
+		
+		//For i18n and l10n.
+		
+		
+		$translateProvider.useStaticFilesLoader({
+			  prefix: 'localeData/locale-',
+			  suffix: '.json'
+			});
+		
+			// load 'dk' table on startup
+		  $translateProvider.preferredLanguage('dk');
+		  $translateProvider.fallbackLanguage('en');
+		
+		//register interceptors
 			$httpProvider.interceptors.push('kissInterceptor');
 
 						$urlRouterProvider.otherwise('/home');

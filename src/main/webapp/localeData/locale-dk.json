@@ -1,0 +1,32 @@
+{
+
+"choose_Search_page" :"Søg",
+"choose_search_page_Address":"Adresser",
+"choose_search_page_Customer":"Kunde",
+"choose_search_page_Party":"Pe<u>r</u>son",
+"choose_search_page_HeadEnd":"Ho<u>v</u>edfordelere",
+"choose_search_page_Case":"Sa<u>g</u>",
+"choose_search_page_CableUnitProject":"Anlægspro<u>j</u>ekt",
+"choose_search_page_SalesConcept":"Salgskon<u>c</u>ept",
+"choose_search_page_Staff":"<u>Y</u>ousee personale",
+"choose_search_page_Street":"Gade",
+
+"header_menu_toolbar_adminTools":"Administratormodul",
+
+"choose_admin_tool_page_createPotentionalCase":"Opret potentiel sag",
+"choose_admin_tool_page_editRemarks":"Bemærkninger",
+"choose_admin_tool_page_editRemarkTypes":"Bemærkningtype",
+"choose_admin_tool_page_editSalesConcept":"Salgskoncept",
+"choose_admin_tool_page_updateNettoPriceIndex":"Nettoprisindeks",
+"choose_admin_tool_page_yoAdministrator":"Administration OK",
+"choose_admin_tool_page_documentTypes":"Dokument Typer",
+"choose_admin_tool_page_administerRoles":"Administer Roller",
+"choose_admin_tool_page_generalTypeValue":"Opslagsværdier",
+"choose_admin_tool_page_general_type":"Vælg opslagstype",
+"choose_admin_tool_page_cancelCase":"Annuller sag",
+"choose_admin_tool_page_deleteCableUnit":"Slet kunde",
+"choose_admin_tool_page_deleteCase":"Slet Sag",
+"choose_admin_tool_page_deleteOffer":"Slet Tilbud",
+"choose_admin_tool_page_documentGenerator":"Dokumentgenerator"
+
+}

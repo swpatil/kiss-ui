@@ -19,6 +19,8 @@
 
 <!-- angular -->
 <script src="lib/angular/angular.js"></script>
+<script src="lib/angular/angular-translate.js"></script>
+<script src="lib/angular/angular-translate-loader-static-files.js"></script>
 <script src="lib/angular/uirouter/angular-ui-router.js"></script>
 <script type="text/javascript" src="lib/angular/angular-ui-tree.min.js"></script>
 <script src="lib/angular/smarttable/smart-table.min.js"></script>
@@ -52,27 +54,41 @@
         <li><a ui-sref="home">Home</a></li>
 
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Search<span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" translate>Search<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a ui-sref="search.customer">Customer</a></li>
-            <li><a ui-sref="search.address">Address</a></li>
-            <li><a href="#">Case</a></li>
-            <li><a href="#">Head End</a></li>
-            <li><a href="#">Party</a></li>
+            <li><a ui-sref="search.customer" translate>choose_search_page_Customer</a></li>
+            <li><a ui-sref="search.address" translate>choose_search_page_Address</a></li>
+            <li><a href="#" translate>choose_search_page_Case</a></li>
+            <li><a href="#" translate>choose_search_page_HeadEnd</a></li>
+            <li><a href="#" translate>choose_search_page_Party</a></li>
           </ul>
         </li>
         
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin<span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" translate>header_menu_toolbar_adminTools<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">CU MassUpdate</a></li>
-            <li><a href="#">Cable Types</a></li>
-            <li><a href="#">Cancel Case</a></li>
-            <li><a href="#">Delete Case</a></li>
-            <li><a href="#">Document Generator</a></li>
+            <li><a href="#" translate>choose_admin_tool_page_createPotentionalCase</a></li>
+            <li><a href="#" translate>choose_admin_tool_page_editRemarks</a></li>
+            <li><a href="#" translate>choose_admin_tool_page_editRemarkTypes</a></li>
+            <li><a href="#" translate>choose_admin_tool_page_editSalesConcept</a></li>
+            <li><a href="#" translate>choose_admin_tool_page_updateNettoPriceIndex</a></li>
+            <li><a href="#" translate>choose_admin_tool_page_yoAdministrator</a></li>
+            <li><a href="#" translate>choose_admin_tool_page_administerRoles</a></li>
+            <li><a href="#" translate>choose_admin_tool_page_cancelCase</a></li>
+            <li><a href="#" translate>choose_admin_tool_page_documentGenerator</a></li>
           </ul>
         </li>
     </ul>
+    
+  <ul class="nav navbar-nav pull-right"> 
+  <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Language<span class="caret"></span></a>
+    <ul class="dropdown-menu" role="menu">
+      <li><a href="" ng-click="changeLanguage('en')"><img src="images/flags/en.png"> English</a></li>
+      <li><a href="" ng-click="changeLanguage('dk')"><img src="images/flags/dk.png"> Danish</a></li>
+    </ul>
+  </li>
+</ul>
 </nav>
 <!-- MAIN CONTENT -->
 <div class="">
