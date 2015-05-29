@@ -17,7 +17,7 @@
 	 
 	  <div class="col-md-12">
 		</br>
-		<a ui-sref="address({cusNo: custNo})">
+		<a ui-sref="address({cusNo: custNo})" tooltip="Add Installations">
                  <button id="addInstallations" drools-check="drools" drools-constraint="addInstallations"   class="btn btn-xs btn-primary" ng-disabled="true">Add Installations</button>
         </a>
       	 <button type="button" drools-check="drools" drools-constraint="removeInstallations" class="btn btn-xs btn-primary" ng-disabled="true">Remove Installations</button>
@@ -25,13 +25,15 @@
 		 <button type="button" drools-check="drools" drools-constraint="undoMovement" ng-show="showCol" class="btn btn-xs  btn-primary" ng-disabled="true">Undo Movement</button>
 		 <button type="button" drools-check="drools" drools-constraint="toXAL" ng-show="showCol" class="btn btn-xs  btn-primary" ng-disabled="true">Select Installations to XAL</button>
 		 <button type="button" drools-check="drools" drools-constraint="viewHistory" ng-show="showCol" class="btn btn-xs  btn-primary" ng-disabled="true">View History</button>
-		 <button type="button" drools-check="drools" drools-constraint="exportExcel" class="btn btn-xs  btn-primary glyphicon glyphicon-export" ng-disabled="true"></button>		 		 		 
+<!-- 		 <button type="button" drools-check="drools" drools-constraint="exportExcel" class="btn btn-xs  btn-primary glyphicon glyphicon-export" ng-click="exportToElsInstallations()" ng-disabled="true"></button> -->
+		 <a href="/kiss-rest/exportToExcel/installations/" tooltip="Export to Excel"   class="btn btn-xs  btn-primary glyphicon glyphicon-export"></a>		 		 		 
 		<input type="text" ng-model="valueForSearch" class="pull-right col-md-2 input-sm form-control" placeholder="Global Search......."  ng-change="searchData()"  style="width: 20%;"/>
        </div>
 </div>
 <table st-table="displayed" st-safe-src="rowCollection" st-pipe="getIndtallations" class="table table-striped table-installations table-condensed">
 		<thead>
 		<tr>
+			
 			<th st-sort="streetname">Street Name</th>
 			<th st-sort="houseno">House Nr.</th>
 			<th st-sort="floor">Floor</th>
@@ -50,7 +52,7 @@
 		</thead>
 		<tbody ng-show="!isLoading">
 		<tr st-select-row="row" st-select-mode="multiple" ng-repeat="row in displayed">
-			<td><a popover="{{row.address.postalcode}} : {{row.address.streets.municipalities.municipalityname}}" popover-title="Postal Code : Post-Area"  popover-trigger="mouseenter">{{row.address.streets.streetname}}</a>
+			<td><div id="notePopover"><span  tooltip-placement="auto" popover-template="notes.templateUrl" popover-title="{{notes.title}}" ><a class="glyphicon glyphicon-edit"/></span></div>&nbsp;&nbsp;<a popover="{{row.address.postalcode}} : {{row.address.streets.municipalities.municipalityname}}" popover-title="Postal Code : Post-Area"  popover-trigger="mouseenter">{{row.address.streets.streetname}}</a>
 			</td>
 			<td>{{row.address.houseno}}</td>
 			<td>{{row.address.floor}}</td>
@@ -98,4 +100,3 @@
 		</tfoot>
 	</table>
 </div>
-

@@ -422,3 +422,9 @@ a {
 .pullcenter{
 	margin:auto;
 }
+#notePopover .popover {
+    width: 100px;
+    min-width:450px;
+     height: 250px;
+    
+}

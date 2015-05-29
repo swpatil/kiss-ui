@@ -1,7 +1,7 @@
 (function() {
 	
 
-	angular.module('kissApp').controller('modalAddressInstanceCtrl',['$scope','$rootScope','AddressService','$stateParams','$state','CustomerService','$filter', function ($scope,$rootScope,AddressService,$stateParams,$state,CustomerService,$filter) {
+	angular.module('kissApp').controller('modalAddressInstanceCtrl',['$scope','$rootScope','AddressService','$stateParams','$state','CustomerService','$filter','$log', function ($scope,$rootScope,AddressService,$stateParams,$state,CustomerService,$filter,$log) {
 		 $scope.rowCollection = [];
 		 $scope.addressId=[];
 		 $scope.showAddress=false;
@@ -39,7 +39,7 @@
 		}
 		$scope.addSelected=function(){
 			var addData = { addressIds: $scope.addressId,cableUnitNumber:$scope.custNo};
-			console.log(addData);
+			$log.debug(addData);
 			 AddressService.addInstallationsOnAddress(addData).then(function (result) {
 				 $rootScope.infoMessage=result.description;
 				 if(result.code === '101'){
@@ -94,7 +94,7 @@
 			 if(tableState.sort.predicate != null  || tableState.sort.predicate !=undefined){
 				 if(tableState.pagination.start == 0)
 					 tableState.pagination.start= $scope.currentPage;
-				 console.log("predicate"+tableState.sort.predicate);
+				 $log.debug("predicate"+tableState.sort.predicate);
 				 if (tableState.sort.predicate) {
 					 if(tableState.sort.predicate === 'streetname'){
 						 $scope.displayedCollection = $filter('orderBy')($scope.rowCollection, 'streets.streetname', tableState.sort.reverse);
@@ -134,12 +134,12 @@
 			 //	}
 
 			 tableState.pagination.numberOfPages =$scope.itemsByPage;
-			 console.log(tableState.pagination.start);
+			 $log.debug(tableState.pagination.start);
 			 if($scope.currentPage != tableState.pagination.start) {
 				 $scope.currentPage= tableState.pagination.start;
 				 $scope.page=tableState.pagination.start/10+1;	
 				 $scope.processForm();
-				 console.log('page number'+tableState.pagination.start);
+				 $log.debug('page number'+tableState.pagination.start);
 				 $scope.valueForSearch='';
 
 			 }

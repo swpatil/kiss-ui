@@ -1,10 +1,12 @@
 (function() {
 
-	kissApp.config(['$stateProvider','$urlRouterProvider','$httpProvider','$translateProvider',
-					function($stateProvider, $urlRouterProvider,$httpProvider,$translateProvider) {
+	kissApp.config(['$stateProvider','$urlRouterProvider','$httpProvider','$translateProvider','$logProvider',
+					function($stateProvider, $urlRouterProvider,$httpProvider,$translateProvider,$logProvider) {
+		
 		
 		//For i18n and l10n.
-		
+		var env='dev';
+		$logProvider.debugEnabled(env === 'dev');
 		
 		$translateProvider.useStaticFilesLoader({
 			  prefix: 'localeData/locale-',

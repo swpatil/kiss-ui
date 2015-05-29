@@ -125,13 +125,14 @@
 					'treeController',
 					[
 							'$scope',
-							'$stateParams',						
+							'$stateParams',
+							'$log',
 							'CustomerService',
-							function($scope, $stateParams,
+							function($scope, $stateParams,$log,
 									CustomerService) {
 								$scope.init = function() {
 
-									console.log('$stateParams.cusNo'
+									$log.debug('$stateParams.cusNo'
 											+ $stateParams.cusNo);
 									CustomerService
 											.getCustomerTree(
@@ -156,9 +157,12 @@
 							'$stateParams',
 							'$filter',
 							'$modal',
-							'CustomerService','DroolsService',
+							'$log',
+							'CustomerService','DroolsService','ExportToExcelService',
 							function($scope, $rootScope,$stateParams, $filter,
-									$modal,CustomerService,DroolsService) {
+									$modal,$log,CustomerService,DroolsService,ExportToExcelService) {
+								
+								$log.debug("HELLO FROM DEV ENVIRONMENT");
 								//Variable to hold drools validations results
 								$scope.drools = [];
 								$scope.isLoading = true;
@@ -175,6 +179,7 @@
 								$rootScope.displayingMsgType=undefined;
 								$rootScope.displayingMsgCode=undefined;
 								$rootScope.displayingMsgContent=undefined;
+								
 								$scope.options = [
 								                  { label: 'Stik Opsat', value: 'Stik Opsat' },
 								                  { label: 'Fordelerboks Opsat', value: 'Fordelerboks Opsat' },
@@ -190,14 +195,14 @@
 								if(tableState.sort.predicate != null  || tableState.sort.predicate !=undefined){
 										 if(tableState.pagination.start == 0)
 											 tableState.pagination.start= $scope.currentPage;
-										 console.log("predicate"+tableState.sort.predicate);
+										 $log.debug("predicate"+tableState.sort.predicate);
 										 if (tableState.sort.predicate) {
 											 $scope.displayed = $filter('orderBy')($scope.rowCollection.installations, tableState.sort.predicate, tableState.sort.reverse);
 										 }
 
 									 }
 								// tableState.pagination.numberOfPages =$scope.itemsByPage;
-								// console.log(tableState.pagination.start);
+								// $log.debug(tableState.pagination.start);
 							
 
 								 tableState.pagination.numberOfPages =$scope.itemsByPage;
@@ -206,7 +211,7 @@
 										 $scope.currentPage= tableState.pagination.start;
 										 $scope.page=tableState.pagination.start/10+1;	
 										// $scope.processForm();
-										// console.log('page number'+tableState.pagination.start);
+										// $log.debug('page number'+tableState.pagination.start);
 										 $scope.valueForSearch='';
 
 									
@@ -235,13 +240,22 @@
 							}
 							$scope.isUndefined = function (data) {
 								    return (typeof data === "undefined");
-								}
-									
+							}
+							
+							$scope.exportToElsInstallations=function(){
+								ExportToExcelService.exportToElsInstallations();
+						}
+						$scope.notes = {
+									    templateUrl: 'content/templates/editNoteTemplate.html',
+									    title:'Edit Note'
+							}
 						
-
-						
-								 
-
+						$scope.addNotes=function(){
+							$scope.date= new Date();
+						}
+						$scope.submitNotes=function(){
+							alert('Notes has been submitted');
+						}
 } ]);
 
 

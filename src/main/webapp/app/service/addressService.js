@@ -4,7 +4,7 @@
 			.module('kissApp')
 			.service(
 					'AddressService',
-					function($http, $q,globalData) {
+					function($http,$log, $q,globalData) {
 
 						this.getInstallationsOnAddress = function(cusNo) {
 							var d = $q.defer();
@@ -27,7 +27,7 @@
 					          // this callback will be called asynchronously
 					          // when the response is available
 					        	d.resolve(data);
-					        	console.log("addition"+data);
+					        	$log.debug("addition"+data);
 					        	globalData.dataLoaded = false;
 					        }).
 					        error(function(data, status, headers, config) {
@@ -46,7 +46,7 @@
 					          // this callback will be called asynchronously
 					          // when the response is available
 					        	d.resolve(data);
-					        	console.log(data);
+					        	$log.debug(data);
 					        	globalData.dataLoaded = false;
 					        }).
 					        error(function(data, status, headers, config) {

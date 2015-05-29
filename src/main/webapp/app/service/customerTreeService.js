@@ -1,10 +1,10 @@
 (function() {
 
-angular.module('kissApp').service('CustomerTreeService', function ($http, $q) {
+angular.module('kissApp').service('CustomerTreeService', function ($http,$log, $q) {
 
     this.getCustomerTree = function (cusNo) {
         var d = $q.defer();
-		console.log('cusNo' + cusNo);
+		$log.debug('cusNo' + cusNo);
 
         $http.get('/rest/installations/' + cusNo)
             .success(function (response) {
