@@ -243,7 +243,12 @@
 							}
 							
 							$scope.exportToElsInstallations=function(){
-								ExportToExcelService.exportToElsInstallations();
+								//ExportToExcelService.exportToElsInstallations();
+								var form = document.createElement("form");
+							    form.setAttribute("action", "/kiss-rest/exportToExcel/installations/");
+							    form.setAttribute("method", "get");
+							    form.setAttribute("target", "_blank");
+							    form.submit();
 						}
 						$scope.notes = {
 									    templateUrl: 'content/templates/editNoteTemplate.html',
@@ -256,10 +261,47 @@
 						$scope.submitNotes=function(){
 							alert('Notes has been submitted');
 						}
+						$scope.open = function (size) {
+							 $scope.modalValues = ['item1', 'item2', 'item3'];
+
+							    var modalInstance = $modal.open({
+							      animation: $scope.animationsEnabled,
+							      templateUrl: 'content/templates/showHistory.html',
+							      controller: 'ModalInstanceCtrl',
+							      size: size,
+							      resolve: {
+							        items: function () {
+							          return $scope.displayed;
+							        }
+							      }
+							    });
+
+							    modalInstance.result.then(function (selectedItem) {
+							      $scope.selected = selectedItem;
+							    }, function () {
+							      $log.info('Modal dismissed at: ' + new Date());
+							    });
+							  };
+
+
+						
 } ]);
 
+angular.module('kissApp').controller('ModalInstanceCtrl', function ($scope, $modalInstance, items) {
 
+		  $scope.items = items;
+		  $scope.selected = {
+		    item: $scope.items[0]
+		  };
 
+		  $scope.ok = function () {
+		    $modalInstance.close($scope.selected.item);
+		  };
+
+		  $scope.cancel = function () {
+		    $modalInstance.dismiss('cancel');
+		  };
+		});
 
 
 })();

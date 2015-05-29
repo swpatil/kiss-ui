@@ -1,0 +1,49 @@
+
+<div class="modal-header">
+	<h3 class="modal-title">View History</h3>
+</div>
+<div class="modal-body">
+<!-- 	<ul> -->
+<!-- 		<li ng-repeat="item in items"><a ng-click="selected.item = item">{{ -->
+<!-- 				item }}</a></li> -->
+<!-- 	</ul> -->
+<!-- 	Selected: <b>{{ selected.item }}</b> -->
+	
+	<table st-table="items"  class="table table-striped table-installations table-condensed">
+		<thead>
+		<tr>
+			
+			<th>Street Name</th>
+			<th >House Nr.</th>
+			<th >Floor</th>
+			<th >Side</th>
+			<th >Locality</th>
+			<th >Postal Code</th>
+			<th >Post-Area</th>
+		</tr>
+		</thead>
+		<tr st-select-row="row" ng-repeat="row in items">
+			<td><div id="notePopover"><span  tooltip-placement="auto" popover-template="notes.templateUrl" popover-title="{{notes.title}}" ><a class="glyphicon glyphicon-edit"/></span></div>&nbsp;&nbsp;<a popover="{{row.address.postalcode}} : {{row.address.streets.municipalities.municipalityname}}" popover-title="Postal Code : Post-Area"  popover-trigger="mouseenter">{{row.address.streets.streetname}}</a>
+			</td>
+			<td>{{row.address.houseno}}</td>
+			<td>{{row.address.floor}}</td>
+			<td>{{row.address.door}}</td>
+            <td></td>
+			<td>{{row.address.postalcode}}</td>
+			<td>{{row.movingdate | date}}</td>
+		</tr>
+		</tbody>
+		<tfoot>
+		<tr>
+        <td colspan="4" class="text-center">
+            <div class="pullcenter" st-pagination="" st-template="content/templates/pagination.html"></div>
+        </td>
+			
+		</tr>
+		</tfoot>
+	</table>
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="ok()">OK</button>
+	<button class="btn btn-primary" ng-click="cancel()">Cancel</button>
+</div>
