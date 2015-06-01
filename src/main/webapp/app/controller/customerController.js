@@ -127,13 +127,9 @@
 							'$scope',
 							'$stateParams',
 							'$log',
-							'CustomerService',
-							function($scope, $stateParams,$log,
-									CustomerService) {
+							'CustomerService','$state',function($scope, $stateParams,$log,CustomerService,$state) {
 								$scope.init = function() {
-
-									$log.debug('$stateParams.cusNo'
-											+ $stateParams.cusNo);
+									$log.debug('$stateParams.cusNo'+ $stateParams.cusNo);
 									CustomerService
 											.getCustomerTree(
 													$stateParams.cusNo)
@@ -141,6 +137,23 @@
 											
 													function(result) {
 														 $scope.roleList= [result];
+														 $('#treeview').treeview({
+													          data: $scope.roleList,
+													          onNodeSelected: function(event, data) {
+																	if(data.type=='cu')
+																		$state.go("customer",{cusNo:data.id});
+																		else				
+																		$state.go("customer."+data.type,{caseNo:data.id});
+													        	  },
+													         backColor: 'rgba(255,0,0,0.0)',
+													         color:'lightgrey !important',
+													         borderColor: 'rgba(255,0,0,0.0)',
+													         onhoverColor: 'rgba(130, 130, 130, 0.55);',
+													         expandIcon: 'glyphicon glyphicon-folder-close',
+													         collapseIcon: 'glyphicon glyphicon-folder-open',
+													         emptyIcon: 'glyphicon glyphicon-file',
+													         selectedBackColor: '#7890A8'
+													        });
 														$scope.isLoading = false;
 													});
 								};
@@ -237,10 +250,10 @@
 								$scope.searchData=function(){
 									var filtered = $scope.valueForSearch ? $filter('filter')($scope.rowCollection.installations, $scope.valueForSearch) : $scope.rowCollection.installations;
 									 $scope.displayed = [].concat(filtered);
-							}
+							};
 							$scope.isUndefined = function (data) {
 								    return (typeof data === "undefined");
-							}
+							};
 							
 							$scope.exportToElsInstallations=function(){
 								//ExportToExcelService.exportToElsInstallations();
@@ -249,18 +262,100 @@
 							    form.setAttribute("method", "get");
 							    form.setAttribute("target", "_blank");
 							    form.submit();
-						}
+						};
 						$scope.notes = {
 									    templateUrl: 'content/templates/editNoteTemplate.html',
 									    title:'Edit Note'
-							}
+							};
 						
 						$scope.addNotes=function(){
 							$scope.date= new Date();
-						}
+						};
 						$scope.submitNotes=function(){
 							alert('Notes has been submitted');
-						}
+						};
+						
+						var currentDate = new Date();
+						Date.prototype.toDMY = function Date_toDMY() {
+						    var year, month, day;
+						    year = String(this.getFullYear());
+						    month = String(this.getMonth() + 1);
+						    if (month.length == 1) {
+						        month = "0" + month;
+						    }
+						    day = String(this.getDate());
+						    if (day.length == 1) {
+						        day = "0" + day;
+						    }
+						    return day + "-" + month + "-" + year;
+						};
+						
+						$scope.addHyphen = function() {
+							var wholeDate = $scope.dt;
+							var isValid = true;
+							var todaysDate = (new Date).toDMY();
+							if (wholeDate && Number(wholeDate)) {
+
+								if (wholeDate.length == 6) {
+									var dateRegex = new RegExp("^([0-9]{2})([0-9]{2})([0-9]{2})$");
+									var matches = dateRegex.exec(wholeDate);
+									var day = matches[1];
+									var month = matches[2];
+
+									if (month < 1 || month > 12) {
+										$(event.srcElement|| event.target).val(todaysDate);
+										$('#datePickerInput').val(todaysDate);
+										isValid = false;
+										return false;
+									}
+									if (day < 1 || day > 31) {
+										$(event.srcElement|| event.target).val(todaysDate);
+										$('#datePickerInput').val(todaysDate);
+										isValid = false;
+										return false;
+									}
+									if ((month == 4 || month == 6 || month == 9 || month == 11)
+											&& day == 31) {
+										$(event.srcElement|| event.target).val(todaysDate);
+										$('#datePickerInput').val(todaysDate);
+										$scope.dt = todaysDate;
+										isValid = false;
+										return false;
+									}
+									if (month == 2) {
+										var originalDate = new Date(matches[2] + '-'+ matches[1] + '-' + matches[3]);
+										var dateRegex = new RegExp("^([0-9]{2})([0-9]{2})([0-9]{2})$");
+										var leapmatches = dateRegex.exec(wholeDate);
+										console.log(dateRegex.exec(originalDate));
+										if (leapmatches) {
+											var year = leapmatches[3];
+											var isleap = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
+											if (day > 29 || (day == 29 && !isleap)) {
+												$(event.srcElement|| event.target).val(todaysDate);
+												isValid = false;
+												return false;
+											}
+										} else {
+											$(event.srcElement|| event.target).val(todaysDate);
+											$('#datePickerInput').val(todaysDate);
+											return false;
+										}
+									}
+									if (isValid) {
+										var formattedDate = new Date(matches[2] + '-' + matches[1]
+												+ '-' + matches[3]);
+											formattedDate.setFullYear(formattedDate.getFullYear());
+										}
+										$(event.srcElement|| event.target).val(formattedDate.toDMY());
+										$('#datePickerInput').val(formattedDate.toDMY());
+									}
+								} else {
+									$(event.srcElement|| event.target).val((new Date).toDMY());
+									$('#datePickerInput').val((new Date).toDMY());
+								}
+							
+							};
+							
 						$scope.open = function (size) {
 							 $scope.modalValues = ['item1', 'item2', 'item3'];
 
@@ -281,7 +376,23 @@
 							    }, function () {
 							      $log.info('Modal dismissed at: ' + new Date());
 							    });
+							    
 							  };
+							  
+							  $scope.clear = function () {
+								    $scope.dt = null;
+								  };
+
+
+								  $scope.openPicker = function($event) {
+								    $event.preventDefault();
+								    $event.stopPropagation();
+
+								    $scope.opened = true;
+								    $('#datetimepicker').datetimepicker({
+								    	format:'DD-MM-YYYY'
+								    });
+								  };  
 
 
 						

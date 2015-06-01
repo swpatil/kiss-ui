@@ -12,26 +12,46 @@
 </div>
 </div>
 
-<div ng-show="!isLoading" class="" style="padding:5px;"> 
-    	
-	 
-	  <div class="col-md-12">
-		</br>
+<div ng-show="!isLoading" class="" style="padding:5px;">
+<div class="row">
+<div class="col-md-12">
+ <div class="col-md-6 col-xs-6">
+		
 		<a ui-sref="address({cusNo: custNo})" tooltip="Add Installations">
                  <button id="addInstallations" drools-check="drools" drools-constraint="addInstallations"   class="btn btn-xs btn-primary" ng-disabled="true">Add Installations</button>
         </a>
       	 <button type="button" drools-check="drools" drools-constraint="removeInstallations" class="btn btn-xs btn-primary" ng-disabled="true">Remove Installations</button>
 		 <button type="button" drools-check="drools" drools-constraint="move" class="btn btn-xs  btn-primary" ng-disabled="true">Move</button>
 		 <button type="button" drools-check="drools" drools-constraint="undoMovement" ng-show="showCol" class="btn btn-xs  btn-primary" ng-disabled="true">Undo Movement</button>
-		 <button type="button" drools-check="drools"  drools-constraint="viewHistory" ng-show="showCol" class="btn btn-xs  btn-primary" ng-disabled="true">Select Installations to XAL</button>
-		<!-- 		 <button type="button" drools-check="drools" drools-constraint="viewHistory" ng-show="showCol" class="btn btn-xs  btn-primary" ng-disabled="true">View History</button> -->
-			<button type="button"  ng-show="showCol" tooltip="View History" class="btn btn-xs  btn-primary" ng-click="open('lg')" >View History</button>
+		 <button type="button" drools-check="drools" drools-constraint="toXAL" ng-show="showCol" class="btn btn-xs  btn-primary" ng-disabled="true">Select Installations to XAL</button>
+		 <button type="button" drools-check="drools" drools-constraint="viewHistory" ng-show="showCol" class="btn btn-xs  btn-primary" ng-disabled="true">View History</button>
 <!-- 		 <button type="button" drools-check="drools" drools-constraint="exportExcel" class="btn btn-xs  btn-primary glyphicon glyphicon-export" ng-click="exportToElsInstallations()" ng-disabled="true"></button> -->
-		 <a href="/kiss-rest/exportToExcel/installations/" tooltip="Export to Excel"   class="btn btn-xs  btn-primary glyphicon glyphicon-export"></a>		 		 		 
-		<input type="text" ng-model="valueForSearch" class="pull-right col-md-2 input-sm form-control" placeholder="Global Search......."  ng-change="searchData()"  style="width: 20%;"/>
+		 <a href="/kiss-rest/exportToExcel/installations/" tooltip="Export to Excel"   class="btn btn-xs  btn-primary glyphicon glyphicon-export"></a>
+		 </div>		 		 		 
+		<div class="col-md-3 col-xs-3">
+		 <div class="center-block pull-right input-group date" id='datetimepicker'>
+            <p class="input-group">
+             <input type="text" id="datePickerInput"
+                   class="input-sm form-control"
+				   ng-model="dt"
+				   placeholder="dd-MM-yyyy"
+				   ng-blur="addHyphen()"
+                    />
+                    <span class="input-group-addon" ng-click="openPicker($event)"><span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+            </p>
+        </div>
+       </div>
+        <div class="col-md-3 col-xs-3">
+		<input type="text" ng-model="valueForSearch" class="pull-right input-sm form-control" placeholder="Global Search......."  ng-change="searchData()"/>
+		</div>
+        		
+       </div>
        </div>
 </div>
-<table st-table="displayed" st-safe-src="rowCollection" st-pipe="getIndtallations" class="table table-striped table-installations table-condensed">
+
+<div id="fixedHeader">
+<table id="installationTable" st-table="displayed" st-safe-src="rowCollection" st-pipe="getIndtallations" class="table table-striped table-installations table-condensed">
 		<thead>
 		<tr>
 			
@@ -93,11 +113,12 @@
 		</tbody >
 		<tfoot ng-show="!isLoading">
 		<tr>
-        <td colspan="4" class="text-center">
+        <td class="text-center">
             <div class="pullcenter" st-pagination="" st-template="content/templates/pagination.html"></div>
-        </td>
 			
 		</tr>
 		</tfoot>
 	</table>
-</div>
+	</div>
+	</div>
+	</div>

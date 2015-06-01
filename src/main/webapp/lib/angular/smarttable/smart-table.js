@@ -326,8 +326,10 @@ ng.module('smart-table')
           if (index % 3 === 0 && attr.stSkipNatural === undefined) {
             //manual reset
             index = 0;
-            ctrl.tableState().sort = {};
-            ctrl.tableState().pagination.start = 0;
+            /*--- Introduced predicated natural for natural order and commented pagination start for bug fixing -TDC*/
+            ctrl.tableState().sort = {predicate:"natural"};
+//            ctrl.tableState().pagination.start = 0;
+            /*----- END----*/
             ctrl.pipe();
           } else {
             ctrl.sortBy(predicate, index % 2 === 0);

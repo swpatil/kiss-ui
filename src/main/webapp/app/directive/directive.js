@@ -84,6 +84,7 @@ angular.module('kissApp').directive('pageSelect', function() {
     }
   }
 });
+
 angular.module('kissApp').directive("droolsCheck",
         function() {
             function link( $scope, element, attributes ) {
@@ -116,3 +117,56 @@ angular.module('kissApp').directive("droolsCheck",
 
         }
     );
+
+angular.module('kissApp').directive('dateTimePicker', function ($rootScope) {
+ 
+        return {
+            require: '?ngModel',
+            restrict: 'AE',
+            scope: {
+                pick12HourFormat: '@',
+                language: '@',
+                useCurrent: '@',
+                location: '@'
+            },
+            link: function (scope, elem, attrs) {
+                elem.datetimepicker({
+                    pick12HourFormat: scope.pick12HourFormat,
+                    language: scope.language,
+                    useCurrent: scope.useCurrent
+                })
+ 
+                //Local event change
+                elem.on('blur', function () {
+ 
+                    console.info('this', this);
+                    console.info('scope', scope);
+                    console.info('attrs', attrs);
+ 
+ 
+                    /*// returns moments.js format object
+                    scope.dateTime = new Date(elem.data("DateTimePicker").getDate().format());
+                    // Global change propagation
+
+                    $rootScope.$broadcast("emit:dateTimePicker", {
+                        location: scope.location,
+                        action: 'changed',
+                        dateTime: scope.dateTime,
+                        example: scope.useCurrent
+                    });
+                    scope.$apply();*/
+                })
+            }
+        };
+    });
+angular.module('kissApp').directive('fixedTableHeaders', ['$timeout', function($timeout) {
+	  return {
+	    restrict: 'A',
+	    link: function(scope, element, attrs) {
+	      $timeout(function() {
+	          container = element.parentsUntil(attrs.fixedTableHeaders);
+	          element.stickyTableHeaders({ scrollableArea: container, "fixedOffset": 2 });
+	      }, 0);
+	    }
+	  }
+	}]);   

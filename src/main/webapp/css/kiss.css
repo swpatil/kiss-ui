@@ -5,8 +5,7 @@ html,body {
 
 body {
 	background-image: url('../images/background.png');
-	//font-size: 12px;
-	padding-top: 60px;
+	font-size: 14px;
 	overflow-x:hidden;
 	//overflow-y:hidden;
 }
@@ -38,6 +37,7 @@ body {
 	height: 90%;
 	margin-left: -250px;
 	overflow-y: auto;
+	overflow-x: hidden;
 	background-image: url("http://4.bp.blogspot.com/_A_BXOSXle0Y/TGylG092GxI/AAAAAAAAA7I/rfRw-elz2qI/s1600/side-bg3.png");
 	-webkit-transition: all 0.5s ease;
 	-moz-transition: all 0.5s ease;
@@ -52,7 +52,7 @@ body {
 }
 
 #page-content-wrapper {
-	width: 97%
+	width: 97%;
 	height:80%;
 	position: absolute;
 	padding: 15px;
@@ -110,10 +110,51 @@ body {
 	color: #fff;
 	background: none;
 }
+.navbar-brand {
+   color: lightgrey !important;
+}
+.navbar-inverse .navbar-nav > li > a {
+  color: lightgrey !important;
+}
 
-@media ( min-width :768px) {
+/*pagination*/
+.pagination li a input {
+  padding: 0;
+  margin: -5px 0;
+}
+.pullcenter{
+	margin:auto;
+}
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #DBE6F6 !important;
+}        
+
+.well-white{
+	overflow:auto;
+	background:#FFFFFF !important;
+}
+.currently-loading {
+opacity:0.45;
+-moz-opacity:0.45;
+filter:alpha(opacity=45);
+width: 100%;
+height:100%;
+background-attachment: fixed;
+background-repeat: no-repeat;
+background-position: center center;
+background:rgb(173, 199, 239);
+z-index:5000;
+}
+ .centeredImage
+    {
+    text-align:center;
+    margin-top:0px;
+    margin-bottom:0px;
+    padding:0px;
+    }
+
 	#wrapper {
-		padding-left: 25%;
+		padding-left: 24.5%;
 	}
 	#wrapper.toggled {
 		padding-left: 0;
@@ -247,10 +288,6 @@ body {
     background: whitesmoke;
     -webkit-box-shadow: inset 0 0 4px 1px rgba(0, 0, 0, 0.5);
 }
-.well-white{
-	overflow:auto;
-	background:#FFFFFF !important;
-}
 .blackBorder{
 	border-top: #2B5797 solid 3px !important;
 }
@@ -341,7 +378,7 @@ table.table-search {
     align-items: stretch;
     height: 40em; /* this can vary */
 }
-table.table-installations {
+#fixedHeader table.table-installations {
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     display: flex;
@@ -350,46 +387,46 @@ table.table-installations {
     height: 35em; /* this can vary */
 }
 
-table * {
-    box-sizing: inherit;
-    -moz-box-sizing: inherit;
+#fixedHeader table * {
+     box-sizing: inherit;
+    -moz-box-sizing: inherit; 
 }
 
-thead {
+#fixedHeader thead {
     display: flex;
     flex-direction: column;
     align-items: stretch;
 }
 
-tbody {
-    overflow-y: scroll;
-    overflow-x: scroll !important;
-    display: inline-block;
+#fixedHeader tbody {
+     overflow-y: scroll;
+    
+    display: inline-block; 
 }
 
-thead > tr, tbody > tr, tfoot > tr {
+#fixedHeader thead > tr,#fixedHeader tbody > tr,#fixedHeader tfoot > tr {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
 }
 
-thead, tfoot {
+#fixedHeader thead,#fixedHeader tfoot {
     flex-shrink: 0;
 }
 
-th, tbody td {
+#fixedHeader th,#fixedHeader tbody td {
     width: 100%; /* this can vary */
     overflow-x: hidden;
     text-overflow: ellipsis;
-    display: inline-block;
+    /* display: inline-block; */
     word-break: break-word;
 }
 
-tfoot {
+#fixedHeader tfoot {
     display: inline-block;
-}
+} 
 
-tfoot td {
+#fixedHeader tfoot td {
     width: 100%;
     display: inline-block;
 }
@@ -415,6 +452,7 @@ a {
   width: 50px;
   text-align: center;
 }
+
 .pagination li a input {
   padding: 0;
   margin: -5px 0;

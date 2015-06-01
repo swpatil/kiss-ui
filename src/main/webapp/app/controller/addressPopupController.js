@@ -94,8 +94,9 @@
 			 if(tableState.sort.predicate != null  || tableState.sort.predicate !=undefined){
 				 if(tableState.pagination.start == 0)
 					 tableState.pagination.start= $scope.currentPage;
+
 				 $log.debug("predicate"+tableState.sort.predicate);
-				 if (tableState.sort.predicate) {
+				 if (tableState.sort.predicate && tableState.sort.predicate != "natural") {
 					 if(tableState.sort.predicate === 'streetname'){
 						 $scope.displayedCollection = $filter('orderBy')($scope.rowCollection, 'streets.streetname', tableState.sort.reverse);
 						 
@@ -123,6 +124,9 @@
 					 else
 						 
 					 $scope.displayedCollection = $filter('orderBy')($scope.rowCollection, tableState.sort.predicate, tableState.sort.reverse);
+				 }
+				 else{
+					 $scope.displayedCollection = $scope.rowCollection;
 				 }
 
 			 }

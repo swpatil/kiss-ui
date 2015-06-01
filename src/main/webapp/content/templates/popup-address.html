@@ -142,16 +142,26 @@
   		</div>
 	 </form> 
 	 </div> 
-<div ng-show="showAddress == true" class="table-responsive container-fluid well well-white well-sm"> 
-<button id="searchAgain"  ng-hide="hideSearch==false" ng-click="searchAgain()" class="btn btn-default" tabindex="9">Search Again</button>
-<button id="addselected"  ng-click="addSelected()" class="btn btn-default" tabindex="9">Add Selected</button>
-<input type="text" ng-model="valueForSearch" class="pull-right col-md-2 input-sm form-control" placeholder="Global Search......."  ng-change="searchData()"  style="width: 20%;"/>
-<div ng-if="showAddress == true && areFieldEmpty == false" >
-<table id="addressTable" st-table="displayedCollection"  st-pipe="getPaginatedData" st-safe-src="rowCollection" class="table table-striped table-search">
+<div ng-show="showAddress == true" class="table-responsive container-fluid well well-white">
+<div class="row">
+<div class="col-md-3 col-xs-6"> 
+<button id="searchAgain"  ng-hide="hideSearch==false" ng-click="searchAgain()" class="btn btn-default btn-sm" tabindex="9">Search Again</button>
+<button id="addselected"  ng-click="addSelected()" class="btn btn-default btn-sm" tabindex="9">Add Selected</button>
+</div>
+<div class="col-md-6 col-xs-3"></div>
+<div class="col-md-3 col-xs-3">
+<input type="text" ng-model="valueForSearch" class="pull-right input-sm form-control" placeholder="Global Search......."  ng-change="searchData()"/>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+<div ng-if="showAddress == true && areFieldEmpty == false">
+<div id="scrollable-area">
+<table id="addressTable" st-table="displayedCollection"  st-pipe="getPaginatedData" st-safe-src="rowCollection" class="table table-striped table-search" fixed-header>
 		<thead>
 		<tr>
 			
-			<th  st-sort="id"></th>
+			<!-- <th  st-sort="id"></th> -->
 			<th  st-sort="streetname">Street Name</th>
 			<th  st-sort="houseno">House Nr.</th>
 			<th  st-sort="floor">Floor</th>
@@ -176,11 +186,11 @@
 		<tbody ng-show="!isLoading">
 		<tr ng-repeat="row in displayedCollection">
 
-			<td  cs-select="row"><input type="checkbox"></td>
-			<td  >{{row.streets.streetname}}</td>
+			<!-- <td  cs-select="row"><input type="checkbox"></td> -->
+			<td >{{row.streets.streetname}}</td>
 			<td >{{row.houseno}}</td>
 			<td >{{row.floor}}</td>
-			<td  >{{row.door}}</td>
+			<td >{{row.door}}</td>
 			<td >{{row.streets.streetcode}}</td>
 			<td >{{row.streets.municipalities.municipalitycode}} {{row.streets.municipalities.municipalityname}}</td>
 			<td >{{row.placename}}</td>
@@ -191,21 +201,17 @@
 			<td >{{row.createddate | date}}</td>
 		</tr>
 		</tbody>
+		</div>
 		<tfoot>
 		<tr>
-        <td colspan="4" class="text-center">
+        <td colspan="8" class="text-center">
             <div class="pullcenter" st-pagination="" st-template="content/templates/pagination.html"></div>
         </td>
 		</tr>
 		</tfoot>
 	</table>
+	
 </div>
 </div>
-	</div>		
-      
-
-
-   
-
-
-
+</div>
+</div>	
