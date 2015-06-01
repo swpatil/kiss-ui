@@ -1,6 +1,6 @@
 var kissApp = angular.module('kissApp', [ 'ui.router', 'smart-table',
 		'angularTreeview', 'ui.bootstrap', 'cfp.hotkeys',
-		'pascalprecht.translate', 'angular-cache', 'siyfion.sfTypeahead' ]);
+		'pascalprecht.translate', 'angular-cache']);
 kissApp.service('globalData', function() {
 	return {
 		dataLoaded : false,

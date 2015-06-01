@@ -1,4 +1,4 @@
-kissApp.service('DroolsService', [ '$http', '$q',function($http, $q, globalData) {
+kissApp.service('DroolsService', [ '$http', '$q','globalData',function($http, $q, globalData) {
 
 	this.getBusinessRules = function() {
 		var d = $q.defer();
