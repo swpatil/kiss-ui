@@ -1,4 +1,4 @@
-angular.module('kissApp').directive('myTabs', [ function() {
+kissApp.directive('myTabs', function() {
 	return {
 		restrict : 'AE',
 		scope : false,
@@ -17,156 +17,163 @@ angular.module('kissApp').directive('myTabs', [ function() {
 			};
 		}
 	};
-} ])
+});
 
-.directive('staticInclude', function($http, $templateCache, $compile) {
-	return function(scope, element, attrs) {
-		var templatePath = attrs.staticInclude;
-		$http.get(templatePath, {
-			cache : $templateCache
-		}).success(function(response) {
-			var contents = element.html(response).contents();
-			$compile(contents)(scope);
-		});
+kissApp.directive('staticInclude', [ '$http', '$templateCache', '$compile',
+		function($http, $templateCache, $compile) {
+			return function(scope, element, attrs) {
+				var templatePath = attrs.staticInclude;
+				$http.get(templatePath, {
+					cache : $templateCache
+				}).success(function(response) {
+					var contents = element.html(response).contents();
+					$compile(contents)(scope);
+				});
+			};
+		} ]);
+
+kissApp.directive('csSelect', function() {
+	return {
+		require : '^stTable',
+		template : '',
+		scope : {
+			row : '=csSelect'
+		},
+		link : function(scope, element, attr, ctrl) {
+
+			element.bind('change', function(evt) {
+				scope.$apply(function() {
+					ctrl.select(scope.row, 'multiple');
+				});
+			});
+
+			scope.$watch('row.isSelected', function(newValue, oldValue) {
+				if (newValue === true) {
+					element.parent().addClass('st-selected');
+					scope.$parent.addressId.push(scope.row.id.addressId);
+					//console.log('after sekection'+scope.$parent.addressId);
+				} else {
+					element.parent().removeClass('st-selected');
+					var index = scope.$parent.addressId
+							.indexOf(scope.row.id.addressId);
+					if (index > -1) {
+						scope.$parent.addressId.splice(index, 1);
+					}
+					// console.log('after removal'+scope.$parent.addressId);
+				}
+			});
+		}
 	};
 });
+kissApp.directive('stRatio', function() {
+	return {
+		link : function(scope, element, attr) {
+			var ratio = +(attr.stRatio);
 
-angular.module('kissApp').directive('csSelect', function () {
-    return {
-        require: '^stTable',
-        template: '',
-        scope: {
-            row: '=csSelect'
-        },
-        link: function (scope, element, attr, ctrl) {
+			element.css('width', ratio + '%');
 
-            element.bind('change', function (evt) {
-                scope.$apply(function () {
-                    ctrl.select(scope.row, 'multiple');
-                });
-            });
-
-            scope.$watch('row.isSelected', function (newValue, oldValue) {
-                if (newValue === true) {
-                    element.parent().addClass('st-selected');
-                    scope.$parent.addressId.push(scope.row.id.addressId);
-                    //console.log('after sekection'+scope.$parent.addressId);
-                } else {
-                    element.parent().removeClass('st-selected');
-                    var index = scope.$parent.addressId.indexOf(scope.row.id.addressId);
-                    if (index > -1) {
-                    	scope.$parent.addressId.splice(index, 1);
-                    }
-                   // console.log('after removal'+scope.$parent.addressId);
-                }
-            });
-        }
-    };
+		}
+	};
 });
-angular.module('kissApp').directive('stRatio',function(){
-    return {
-      link:function(scope, element, attr){
-        var ratio=+(attr.stRatio);
-        
-        element.css('width',ratio+'%');
-        
-      }
-    };
-});
-angular.module('kissApp').directive('pageSelect', function() {
-  return {
-    restrict: 'E',
-    template: '<input type="text" class="select-page" ng-model="inputPage" ng-change="selectPage(inputPage)">',
-    link: function(scope, element, attrs) {
-      scope.$watch('currentPage', function(c) {
-        scope.inputPage = c;
-      });
-    }
-  }
-});
+kissApp
+		.directive(
+				'pageSelect',
+				function() {
+					return {
+						restrict : 'E',
+						template : '<input type="text" class="select-page" ng-model="inputPage" ng-change="selectPage(inputPage)">',
+						link : function(scope, element, attrs) {
+							scope.$watch('currentPage', function(c) {
+								scope.inputPage = c;
+							});
+						}
+					};
+				});
 
-angular.module('kissApp').directive("droolsCheck",
-        function() {
-            function link( $scope, element, attributes ) {
+kissApp.directive("droolsCheck", [
+		'$scope',
+		'element',
+		'attributes',
+		function() {
+			function link($scope, element, attributes) {
 
-                // 
-                var droolsArray = attributes.droolsCheck;
+				// 
+				var droolsArray = attributes.droolsCheck;
 
-                // I am the optional slide duration.
-                var  droolsConstraintId=attributes.droolsConstraint;
-                $scope.$watch(
-                		droolsArray,
-                		function(droolsNewValue, droolsOldValue ) {
-                			if(droolsNewValue !=  droolsOldValue){
-                				if(droolsNewValue.enableFields.indexOf(droolsConstraintId) >-1){
-                					element.prop( "disabled", false );
+				// I am the optional slide duration.
+				var droolsConstraintId = attributes.droolsConstraint;
+				$scope.$watch(droolsArray, function(droolsNewValue,
+						droolsOldValue) {
+					if (droolsNewValue != droolsOldValue) {
+						if (droolsNewValue.enableFields
+								.indexOf(droolsConstraintId) > -1) {
+							element.prop("disabled", false);
 
-                				}
-                			}
-                		}
-                );
+						}
+					}
+				});
 
-            }
+			}
 
+			// Return the directive configuration.
+			return ({
+				link : link,
+				restrict : "A"
+			});
 
-            // Return the directive configuration.
-            return({
-                link: link,
-                restrict: "A"
-            });
+		} ]);
 
-        }
-    );
+kissApp.directive('dateTimePicker', [ '$rootScope', function($rootScope) {
 
-angular.module('kissApp').directive('dateTimePicker', function ($rootScope) {
- 
-        return {
-            require: '?ngModel',
-            restrict: 'AE',
-            scope: {
-                pick12HourFormat: '@',
-                language: '@',
-                useCurrent: '@',
-                location: '@'
-            },
-            link: function (scope, elem, attrs) {
-                elem.datetimepicker({
-                    pick12HourFormat: scope.pick12HourFormat,
-                    language: scope.language,
-                    useCurrent: scope.useCurrent
-                })
- 
-                //Local event change
-                elem.on('blur', function () {
- 
-                    console.info('this', this);
-                    console.info('scope', scope);
-                    console.info('attrs', attrs);
- 
- 
-                    /*// returns moments.js format object
-                    scope.dateTime = new Date(elem.data("DateTimePicker").getDate().format());
-                    // Global change propagation
+	return {
+		require : '?ngModel',
+		restrict : 'AE',
+		scope : {
+			pick12HourFormat : '@',
+			language : '@',
+			useCurrent : '@',
+			location : '@'
+		},
+		link : function(scope, elem, attrs) {
+			elem.datetimepicker({
+				pick12HourFormat : scope.pick12HourFormat,
+				language : scope.language,
+				useCurrent : scope.useCurrent
+			});
 
-                    $rootScope.$broadcast("emit:dateTimePicker", {
-                        location: scope.location,
-                        action: 'changed',
-                        dateTime: scope.dateTime,
-                        example: scope.useCurrent
-                    });
-                    scope.$apply();*/
-                })
-            }
-        };
-    });
-angular.module('kissApp').directive('fixedTableHeaders', ['$timeout', function($timeout) {
-	  return {
-	    restrict: 'A',
-	    link: function(scope, element, attrs) {
-	      $timeout(function() {
-	          container = element.parentsUntil(attrs.fixedTableHeaders);
-	          element.stickyTableHeaders({ scrollableArea: container, "fixedOffset": 2 });
-	      }, 0);
-	    }
-	  }
-	}]);   
+			//Local event change
+			elem.on('blur', function() {
+
+				console.info('this', this);
+				console.info('scope', scope);
+				console.info('attrs', attrs);
+
+				/*// returns moments.js format object
+				scope.dateTime = new Date(elem.data("DateTimePicker").getDate().format());
+				// Global change propagation
+
+				$rootScope.$broadcast("emit:dateTimePicker", {
+				    location: scope.location,
+				    action: 'changed',
+				    dateTime: scope.dateTime,
+				    example: scope.useCurrent
+				});
+				scope.$apply();*/
+			});
+		}
+	};
+} ]);
+kissApp.directive('fixedTableHeaders', [ '$timeout', function($timeout) {
+	return {
+		restrict : 'A',
+		link : function(scope, element, attrs) {
+			$timeout(function() {
+				container = element.parentsUntil(attrs.fixedTableHeaders);
+				element.stickyTableHeaders({
+					scrollableArea : container,
+					"fixedOffset" : 2
+				});
+			}, 0);
+		}
+	};
+} ]);

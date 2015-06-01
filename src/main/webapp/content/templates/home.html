@@ -1,6 +1,36 @@
 <!-- partial-home.html -->
 
+<!-- NAVIGATION -->
+<nav class="navbar navbar-inverse navbar-fixed-top" style="background-color:#2B5797;" role="navigation">
+    <div class="navbar-header">
+        <a class="navbar-brand" ui-sref="#">TDC</a>
+    </div>
+    <ul class="nav navbar-nav">
+        <li><a ui-sref="home">Home</a></li>
 
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Search<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a ui-sref="search.customer">Customer</a></li>
+            <li><a ui-sref="search.address">Address</a></li>
+            <li><a href="#">Case</a></li>
+            <li><a href="#">Head End</a></li>
+            <li><a href="#">Party</a></li>
+          </ul>
+        </li>
+        
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">CU MassUpdate</a></li>
+            <li><a href="#">Cable Types</a></li>
+            <li><a href="#">Cancel Case</a></li>
+            <li><a href="#">Delete Case</a></li>
+            <li><a href="#">Document Generator</a></li>
+          </ul>
+        </li>
+    </ul>
+</nav>
 <div class="row">
   <div class="col-md-offset-4 col-md-4">
     <div class="panel panel-default">
