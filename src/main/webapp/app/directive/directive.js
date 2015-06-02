@@ -90,19 +90,16 @@ kissApp
 					};
 				});
 
-kissApp.directive("droolsCheck", [
-		'$scope',
-		'element',
-		'attributes',
+kissApp.directive("droolsCheck",
 		function() {
-			function link($scope, element, attributes) {
+			function link(scope, element, attributes) {
 
 				// 
 				var droolsArray = attributes.droolsCheck;
 
 				// I am the optional slide duration.
 				var droolsConstraintId = attributes.droolsConstraint;
-				$scope.$watch(droolsArray, function(droolsNewValue,
+				scope.$watch(droolsArray, function(droolsNewValue,
 						droolsOldValue) {
 					if (droolsNewValue != droolsOldValue) {
 						if (droolsNewValue.enableFields
@@ -121,7 +118,7 @@ kissApp.directive("droolsCheck", [
 				restrict : "A"
 			});
 
-		} ]);
+		});
 
 kissApp.directive('dateTimePicker', [ '$rootScope', function($rootScope) {
 

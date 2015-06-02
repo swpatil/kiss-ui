@@ -8,7 +8,7 @@
 <!-- 				item }}</a></li> -->
 <!-- 	</ul> -->
 <!-- 	Selected: <b>{{ selected.item }}</b> -->
-	
+	<div id="fixedHeader">
 	<table st-table="items"  class="table table-striped table-installations table-condensed">
 		<thead>
 		<tr>
@@ -17,9 +17,8 @@
 			<th >House Nr.</th>
 			<th >Floor</th>
 			<th >Side</th>
-			<th >Locality</th>
-			<th >Postal Code</th>
-			<th >Post-Area</th>
+			
+			
 		</tr>
 		</thead>
 		<tr st-select-row="row" ng-repeat="row in items">
@@ -28,9 +27,7 @@
 			<td>{{row.address.houseno}}</td>
 			<td>{{row.address.floor}}</td>
 			<td>{{row.address.door}}</td>
-            <td></td>
-			<td>{{row.address.postalcode}}</td>
-			<td>{{row.movingdate | date}}</td>
+            
 		</tr>
 		</tbody>
 		<tfoot>
@@ -42,6 +39,7 @@
 		</tr>
 		</tfoot>
 	</table>
+</div>
 </div>
 <div class="modal-footer">
 	<button class="btn btn-primary" ng-click="ok()">OK</button>

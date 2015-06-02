@@ -23,9 +23,10 @@
       	 <button type="button" drools-check="drools" drools-constraint="removeInstallations" class="btn btn-xs btn-primary" ng-disabled="true">Remove Installations</button>
 		 <button type="button" drools-check="drools" drools-constraint="move" class="btn btn-xs  btn-primary" ng-disabled="true">Move</button>
 		 <button type="button" drools-check="drools" drools-constraint="undoMovement" ng-show="showCol" class="btn btn-xs  btn-primary" ng-disabled="true">Undo Movement</button>
-		 <button type="button" drools-check="drools" drools-constraint="toXAL" ng-show="showCol" class="btn btn-xs  btn-primary" ng-disabled="true">Select Installations to XAL</button>
-		 <button type="button" drools-check="drools" drools-constraint="viewHistory" ng-show="showCol" class="btn btn-xs  btn-primary" ng-disabled="true">View History</button>
-<!-- 		 <button type="button" drools-check="drools" drools-constraint="exportExcel" class="btn btn-xs  btn-primary glyphicon glyphicon-export" ng-click="exportToElsInstallations()" ng-disabled="true"></button> -->
+		<button type="button" drools-check="drools"  drools-constraint="viewHistory" ng-show="showCol" class="btn btn-xs  btn-primary" ng-disabled="true">Select Installations to XAL</button>
+		<!-- 		 <button type="button" drools-check="drools" drools-constraint="viewHistory" ng-show="showCol" class="btn btn-xs  btn-primary" ng-disabled="true">View History</button> -->
+		<button type="button"  ng-show="showCol" tooltip="View History" class="btn btn-xs  btn-primary" ng-click="open()" >View History</button>
+		<!--<button type="button" drools-check="drools" drools-constraint="exportExcel" class="btn btn-xs  btn-primary glyphicon glyphicon-export" ng-click="exportToElsInstallations()" ng-disabled="true"></button> -->
 		 <a href="/kiss-rest/exportToExcel/installations/" tooltip="Export to Excel"   class="btn btn-xs  btn-primary glyphicon glyphicon-export"></a>
 		 </div>		 		 		 
 		<div class="col-md-3 col-xs-3">
